@@ -1,0 +1,43 @@
+{
+  "chain": "Ethereum Sepolia",
+  "explorer url": "https://sepolia.etherscan.io/tx/0xc9399c465bbaa846a11cfa08bb8a1d282e937d255d1748ef66442baf32201fca",
+  "status": "0x1 Transaction mined and execution succeed",
+  "transaction hash": "0xc9399c465bbaa846a11cfa08bb8a1d282e937d255d1748ef66442baf32201fca",
+  "block hash": "0xac6a8fd10aa73ee6a158a563613d3bded6bff7c30d30f9bbe311ee42c3e17193",
+  "block number": 5525138,
+  "contract address": "0xc81dcb9afa23cb8483f31b0252a00c93cfc5ac9e",
+  "from": "0x0370d871f1d4b256e753120221f3be87a40bd246",
+  "to": "MyOApp.(constructor)",
+  "gas": "1270448 gas",
+  "transaction cost": "1259286 gas",
+  "input": "0x60e...bd246",
+  "decoded input": {
+    "address _endpoint": "0x6EDCE65403992e310A62460808c4b910D972f10f",
+    "address _delegate": "0x0370D871f1D4B256E753120221F3Be87A40bd246"
+  },
+  "decoded output": "",
+  "logs": [
+    {
+      "from": "0xc81dcb9afa23cb8483f31b0252a00c93cfc5ac9e",
+      "topic": "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
+      "event": "OwnershipTransferred",
+      "args": {
+        "0": "0x0000000000000000000000000000000000000000",
+        "1": "0x0370D871f1D4B256E753120221F3Be87A40bd246",
+        "previousOwner": "0x0000000000000000000000000000000000000000",
+        "newOwner": "0x0370D871f1D4B256E753120221F3Be87A40bd246"
+      }
+    },
+    {
+      "from": "0x6edce65403992e310a62460808c4b910d972f10f",
+      "topic": "0x6ee10e9ed4d6ce9742703a498707862f4b00f1396a87195eb93267b3d7983981",
+      "event": "DelegateSet",
+      "args": {
+        "0": "0xC81dcb9AfA23Cb8483f31b0252a00C93cfc5aC9e",
+        "1": "0x0370D871f1D4B256E753120221F3Be87A40bd246",
+        "sender": "0xC81dcb9AfA23Cb8483f31b0252a00C93cfc5aC9e",
+        "delegate": "0x0370D871f1D4B256E753120221F3Be87A40bd246"
+      }
+    }
+  ]
+}
