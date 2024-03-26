@@ -43,6 +43,14 @@ The 2 txs are as follows:
 
 Deployment could be done using foundry/hardhat as well. Personally, I would prefer foundry though.
 
+Using hardhat:
+
+```sh
+npx hardhat lz:deploy
+```
+
+> Make sure to follow this [doc](https://docs.layerzero.network/contracts/deploying).
+
 ## Run 🚧
 
 <details>

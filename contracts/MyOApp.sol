@@ -6,7 +6,14 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {OApp, MessagingFee, Origin} from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol";
 import {MessagingReceipt} from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OAppSender.sol";
 
+// TODO: Replace OZ's Ownable with that of Solmate.
 contract MyOApp is OApp {
+    /// @notice Emitted when a message is received through _lzReceive.
+    /// @param message The content of the received message.
+    /// @param senderEid What LayerZero Endpoint sent the message.
+    /// @param sender The sending OApp's address.
+    event MessageReceived(string message, uint32 senderEid, bytes32 sender);
+
     constructor(address _endpoint, address _delegate) OApp(_endpoint, _delegate) Ownable(_delegate) {}
 
     string public data = "Nothing received yet.";
@@ -58,12 +65,18 @@ contract MyOApp is OApp {
      * Decodes the received payload and processes it as per the business logic defined in the function.
      */
     function _lzReceive(
-        Origin calldata, /*_origin*/
+        Origin calldata _origin,
         bytes32, /*_guid*/
         bytes calldata payload,
         address, /*_executor*/
         bytes calldata /*_extraData*/
     ) internal override {
+        // Decode the payload to get the message
         data = abi.decode(payload, (string));
+        // Extract the sender's EID from the origin
+        uint32 senderEid = _origin.srcEid;
+        bytes32 sender = _origin.sender;
+        // Emit the event with the decoded message and sender's EID
+        emit MessageReceived(data, senderEid, sender);
     }
 }

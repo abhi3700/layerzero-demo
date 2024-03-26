@@ -12,9 +12,11 @@
     "lint:fix": "eslint --fix '**/*.{js,ts,json}' && prettier --write . && solhint 'contracts/**/*.sol' --fix --noPrompt",
     "lint:js": "eslint '**/*.{js,ts,json}' && prettier --check .",
     "lint:sol": "solhint 'contracts/**/*.sol'",
+    "script": "$npm_execpath run examples/ab.ts",
     "test": "$npm_execpath run test:forge && $npm_execpath run test:hardhat",
     "test:forge": "forge test",
-    "test:hardhat": "hardhat test"
+    "test:hardhat": "hardhat test",
+    "typechain": "hardhat typechain"
   },
   "resolutions": {
     "ethers": "^5.7.2",
@@ -39,6 +41,8 @@
     "@openzeppelin/contracts": "^5.0.1",
     "@openzeppelin/contracts-upgradeable": "^5.0.1",
     "@rushstack/eslint-patch": "^1.7.0",
+    "@typechain/ethers-v5": "^11.1.2",
+    "@typechain/hardhat": "^9.1.0",
     "@types/chai": "^4.3.11",
     "@types/mocha": "^10.0.6",
     "chai": "^4.4.1",
@@ -52,6 +56,7 @@
     "solhint": "^4.1.1",
     "solidity-bytes-utils": "^0.8.2",
     "ts-node": "^10.9.2",
+    "typechain": "^8.3.2",
     "typescript": "^5.3.3"
   },
   "engines": {

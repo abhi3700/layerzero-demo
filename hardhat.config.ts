@@ -8,6 +8,7 @@ import 'dotenv/config'
 import 'hardhat-deploy'
 import 'hardhat-contract-sizer'
 import '@nomiclabs/hardhat-ethers'
+import '@typechain/hardhat'
 import '@layerzerolabs/toolbox-hardhat'
 import { HardhatUserConfig, HttpNetworkAccountsUserConfig } from 'hardhat/types'
 
@@ -51,17 +52,17 @@ const config: HardhatUserConfig = {
     networks: {
         sepolia: {
             eid: EndpointId.SEPOLIA_V2_TESTNET,
-            url: process.env.RPC_URL_SEPOLIA || 'https://rpc.sepolia.org/',
+            url: process.env.SEPOLIA_RPC_URL || 'https://rpc.sepolia.org/',
             accounts,
         },
         fuji: {
             eid: EndpointId.AVALANCHE_V2_TESTNET,
-            url: process.env.RPC_URL_FUJI || 'https://rpc.ankr.com/avalanche_fuji',
+            url: process.env.FUJI_RPC_URL || 'https://rpc.ankr.com/avalanche_fuji',
             accounts,
         },
         mumbai: {
             eid: EndpointId.POLYGON_V2_TESTNET,
-            url: process.env.RPC_URL_MUMBAI || 'https://rpc.ankr.com/polygon_mumbai',
+            url: process.env.MUMBAI_RPC_URL || 'https://rpc.ankr.com/polygon_mumbai',
             accounts,
         },
     },
@@ -69,6 +70,10 @@ const config: HardhatUserConfig = {
         deployer: {
             default: 0, // wallet address of index[0], of the mnemonic in .env
         },
+    },
+    typechain: {
+        outDir: './build/typechain/',
+        target: 'ethers-v5',
     },
 }
 
