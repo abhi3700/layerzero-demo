@@ -54,17 +54,17 @@ async function setEnforcedParams(provider: ethers.providers.JsonRpcProvider, con
 
 async function sepolia_to_mumbai() {
     try {
-        const provider = new ethers.providers.JsonRpcProvider(process.env.SEPOLIA_RPC_URL)
-        const token = new ethers.Contract(tokenOnSepoliaAddress, abi, provider)
-        const owner = new ethers.Wallet(privateKey, provider)
+        // ==== On Sepolia network
+        const sepoliaProvider = new ethers.providers.JsonRpcProvider(process.env.SEPOLIA_RPC_URL)
+        const token = new ethers.Contract(tokenOnSepoliaAddress, abi, sepoliaProvider)
+        const owner = new ethers.Wallet(privateKey, sepoliaProvider)
 
         // get balance of sender/owner
         // minted 1M tokens to owner during deployment
         const balOwner = await token.balanceOf(owner.address)
-        // TODO: Add helper function
-        assert(
-            ethers.utils.formatEther(BigInt(balOwner._hex).toString()) == '1000000.0',
-            "owner's balance should be 1M"
+        console.log(
+            'Balance on Sepolia network just before sending: ',
+            ethers.utils.formatEther(BigInt(balOwner._hex).toString())
         )
 
         // OPTIONAL: Set enforced params
@@ -74,8 +74,6 @@ async function sepolia_to_mumbai() {
         const sendParams: SendParamStruct = {
             dstEid: epB,
             to: ethers.utils.hexZeroPad(tokenOnMumbaiAddress, 32),
-            // CLEANUP: Remove later
-            // to: '0xb067ddcc9628485c236568c793558bd42d342a6b000000000000000000000000',    // final result is same with both content
             amountLD: BigNumber.from(String(1e18)), // 1 ether
             minAmountLD: BigNumber.from(String(1e18)), // 1 ether
             extraOptions: options,
@@ -88,10 +86,23 @@ async function sepolia_to_mumbai() {
         console.log('quote: \n nativeFee: ', messagingFee.nativeFee, '\n lzFee: ', messagingFee.lzTokenFee)
 
         // send
-        const sendTx = await token.connect(owner).send(sendParams, messagingFee, owner.address, { gasLimit: 5000000 })
+        const sendTx = await token
+            .connect(owner)
+            .send(sendParams, messagingFee, owner.address, { value: messagingFee.nativeFee })
         await sendTx.wait()
 
         console.log('Tx hash for sending tokens on Sepolia: ', sendTx.hash)
+
+        // ==== On Mumbai network
+        const mumbaiProvider = new ethers.providers.JsonRpcProvider(process.env.MUMBAI_RPC_URL)
+        const tokenMumbai = new ethers.Contract(tokenOnMumbaiAddress, abi, mumbaiProvider)
+
+        // get balance of sender/owner
+        const balMumbai = await tokenMumbai.balanceOf(owner.address)
+        console.log(
+            'Balance on Mumbai network just before receiving: ',
+            ethers.utils.formatEther(BigInt(balMumbai._hex).toString())
+        )
     } catch (error) {
         console.error('An error occurred:', error)
     }
