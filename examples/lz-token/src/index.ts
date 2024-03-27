@@ -44,22 +44,28 @@ async function main() {
         await tokenBridge.setPeers()
 
         // send tokens from Sepolia to Mumbai
-        await TokenBridge.sendTokens(
-            tokenBridge.tokens[0],
-            tokenBridge.signers[0],
-            ethers.utils.parseUnits('1', 18), // 1 TSSC
-            tokenBridge.endpointIds[1],
-            tokenBridge.tokens[1].address
-        )
+        // await TokenBridge.sendTokens(
+        //     tokenBridge.tokens[0],
+        //     tokenBridge.signers[0],
+        //     ethers.utils.parseUnits('1', 18), // 1 TSSC
+        //     tokenBridge.endpointIds[1],
+        //     tokenBridge.tokens[1].address
+        // )
 
         // send tokens from Mumbai to Sepolia
-        await TokenBridge.sendTokens(
-            tokenBridge.tokens[1],
-            tokenBridge.signers[1],
-            ethers.utils.parseUnits('1', 18), // 1 TSSC
-            tokenBridge.endpointIds[0],
-            tokenBridge.tokens[0].address
-        )
+        // await TokenBridge.sendTokens(
+        //     tokenBridge.tokens[1],
+        //     tokenBridge.signers[1],
+        //     ethers.utils.parseUnits('1', 18), // 1 TSSC
+        //     tokenBridge.endpointIds[0],
+        //     tokenBridge.tokens[0].address
+        // )
+
+        // NOTE:
+        // - The sum of total supply of both the chains should 2M (as minted to each chain during deployment),
+        // unless there is some delay in indexing info.
+        // - Ideally one should put a sleep of 6 mins or more in between before displaying the accurate info.
+        await tokenBridge.getTotalSuppliesOf()
     } catch (error) {
         throw new Error(`Panic with ${error}`)
     }
