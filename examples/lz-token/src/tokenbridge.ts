@@ -123,17 +123,21 @@ export class TokenBridge {
         )
     }
 
+    /// Get balances of an address on both the chains
     public async getBalancesOf(whoAddress: string): Promise<BigNumber[]> {
         const balances = []
         for (let i = 0; i < 2; ++i) {
             const balOwner = await this.tokens[i].balanceOf(whoAddress)
-            console.log(`Owner[${i}]'s token balance: ${ethers.utils.formatEther(balOwner)}`)
+            console.log(
+                `Address \'${whoAddress.slice(0, 6)}...${whoAddress.slice(-4)}\' with token-[${i}] has balance: ${ethers.utils.formatEther(balOwner)}`
+            )
             balances.push(balOwner)
         }
 
         return balances
     }
 
+    /// Get the total supply of tokens on both the chains
     public async getTotalSuppliesOf(): Promise<BigNumber[]> {
         const totalSupplies = []
         for (let i = 0; i < 2; ++i) {
@@ -179,13 +183,13 @@ export class TokenBridge {
         dstEid: BigNumberish,
         dstTokenAddress: string
     ): Promise<void> {
-        // TODO: add gas limit as param
+        // TODO: add gas limit as param by fetching from the network on real-time
         const options = Options.newOptions().addExecutorLzReceiveOption(200000, 0).toHex().toString()
         const sendParams: SendParamStruct = {
             dstEid,
             to: ethers.utils.hexZeroPad(dstTokenAddress, 32),
             amountLD: amount,
-            minAmountLD: amount, // TODO: add min amount
+            minAmountLD: amount, // TODO: try with some min. amount instead of same as amount
             extraOptions: options,
             composeMsg: '0x',
             oftCmd: '0x',

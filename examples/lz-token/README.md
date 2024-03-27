@@ -15,3 +15,9 @@ yarn
 ```sh
 yarn build
 ```
+
+## Run
+
+```sh
+yarn start
+```

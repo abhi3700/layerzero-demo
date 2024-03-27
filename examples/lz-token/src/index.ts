@@ -1,12 +1,12 @@
 /**
  * 1 TSSC Token successfully transferred from Sepolia to Mumbai.
- * Tx url: https://testnet.layerzeroscan.com/tx/0x4add361c06fdda00faa7f329ff34d5e1ebc2544104a7cc444f955184dbb74216
+ * Tx url: https://testnet.layerzeroscan.com/tx/0xa3811d3bd8f80af4d40f3cd488349c80a264ac49d8bd290dc1b028575d5234eb
  *
  * Takes approx. 5-6 mins to deliver the message to dst chain.
  */
 
 import { TokenBridge, BridgeConfig, ZERO_ADDRESS } from './tokenbridge'
-import { BigNumber, ethers } from 'ethers'
+import { ethers } from 'ethers'
 import { config } from 'dotenv'
 
 // load env vars
@@ -44,28 +44,33 @@ async function main() {
         await tokenBridge.setPeers()
 
         // send tokens from Sepolia to Mumbai
-        // await TokenBridge.sendTokens(
-        //     tokenBridge.tokens[0],
-        //     tokenBridge.signers[0],
-        //     ethers.utils.parseUnits('1', 18), // 1 TSSC
-        //     tokenBridge.endpointIds[1],
-        //     tokenBridge.tokens[1].address
-        // )
+        await TokenBridge.sendTokens(
+            tokenBridge.tokens[0],
+            tokenBridge.signers[0],
+            ethers.utils.parseUnits('1', 18), // 1 TSSC
+            tokenBridge.endpointIds[1],
+            tokenBridge.tokens[1].address
+        )
 
         // send tokens from Mumbai to Sepolia
-        // await TokenBridge.sendTokens(
-        //     tokenBridge.tokens[1],
-        //     tokenBridge.signers[1],
-        //     ethers.utils.parseUnits('1', 18), // 1 TSSC
-        //     tokenBridge.endpointIds[0],
-        //     tokenBridge.tokens[0].address
-        // )
+        await TokenBridge.sendTokens(
+            tokenBridge.tokens[1],
+            tokenBridge.signers[1],
+            ethers.utils.parseUnits('1', 18), // 1 TSSC
+            tokenBridge.endpointIds[0],
+            tokenBridge.tokens[0].address
+        )
 
         // NOTE:
         // - The sum of total supply of both the chains should 2M (as minted to each chain during deployment),
         // unless there is some delay in indexing info.
         // - Ideally one should put a sleep of 6 mins or more in between before displaying the accurate info.
         await tokenBridge.getTotalSuppliesOf()
+
+        /// Get balance of 3 addresses (1 EOA, 2 contracts)
+        await tokenBridge.getBalancesOf(tokenBridge.signers[0].address)
+        await tokenBridge.getBalancesOf(tokenBridge.tokens[0].address)
+        await tokenBridge.getBalancesOf(tokenBridge.tokens[1].address)
     } catch (error) {
         throw new Error(`Panic with ${error}`)
     }

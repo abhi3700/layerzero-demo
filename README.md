@@ -80,3 +80,24 @@ yarn start
 ```
 
 The script is able to send tokens from chain A to B & viceversa. Also ignore deployments & setting peers, if already done.
+
+Currently, when tokens are transferred from chain A to B, the token-B receives the token.
+
+<details><summary>Details:</summary>
+
+```sh
+Address '0x0370...d246' with token-[0] has balance: 999994.0
+Address '0x0370...d246' with token-[1] has balance: 999997.0
+Address '0xcd17...76ba' with token-[0] has balance: 3.0
+Address '0xcd17...76ba' with token-[1] has balance: 0.0
+Address '0x5c91...59cD' with token-[0] has balance: 0.0
+Address '0x5c91...59cD' with token-[1] has balance: 6.0
+```
+
+As you can see that 3 addresses (1 EOA, 2 contracts) have balances of the 2 tokens. Cumulatively, on either chain total supply is 1 M, total 2 M.
+
+| TODO: |
+|--|
+| This needs to be fixed as in: <br>- by default the token recipient should be same as sender, or <br/>- sender can explicitly provide recipient. <br/> <br/>Post fixing this on contract end, `TokenBridge` class & hence `main()` script needs to be modified. |
+
+</details>
