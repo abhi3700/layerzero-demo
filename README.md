@@ -28,6 +28,12 @@ yarn compile
 
 ## Deploy
 
+### OApp
+
+#### Using Remix IDE
+
+<details><summary>Details:</summary>
+
 I have used Remix so far via:
 
 ```sh
@@ -38,12 +44,14 @@ remixd -s .
 
 The 2 txs are as follows:
 
-1. Deploy `MyOApp` on Ethereum Sepolia testnet: [Tx url](https://sepolia.etherscan.io/tx/0xc9399c465bbaa846a11cfa08bb8a1d282e937d255d1748ef66442baf32201fca), [Details](./deployments/1_to_src_chain.json).
-2. Deploy `DesOApp` on Polygon Mumbai: [Tx url](https://mumbai.polygonscan.com/tx/0xb9e4bc9329fdca645b05a848a5f665e8efcbb437d3d1dc801c5acb8aa6496edc), [Details](./deployments/2_to_des_chain.json).
+1. Deploy `MyOApp` on Ethereum Sepolia testnet: [Tx url](https://sepolia.etherscan.io/tx/0xc9399c465bbaa846a11cfa08bb8a1d282e937d255d1748ef66442baf32201fca), [Details](./deployments/manual/1_to_src_chain.json).
+2. Deploy `DesOApp` on Polygon Mumbai: [Tx url](https://mumbai.polygonscan.com/tx/0xb9e4bc9329fdca645b05a848a5f665e8efcbb437d3d1dc801c5acb8aa6496edc), [Details](./deployments/manual/2_to_des_chain.json).
+
+</details>
+
+#### Using Hardhat
 
 Deployment could be done using foundry/hardhat as well. Personally, I would prefer foundry though.
-
-Using hardhat:
 
 ```sh
 npx hardhat lz:deploy
@@ -62,6 +70,8 @@ TODO: write script like [this](./examples/lz-token/src/index.ts).
 Go to [examples/lz-token](./examples/lz-token/)
 
 ```sh
+cd examples/lz-token
+
 # Install the packages
 yarn
 
@@ -69,4 +79,4 @@ yarn
 yarn start
 ```
 
-</details>
+The script is able to send tokens from chain A to B & viceversa. Also ignore deployments & setting peers, if already done.
