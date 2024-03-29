@@ -71,9 +71,12 @@ export class TokenBridge {
                 )
                 await tokenContract.deployed()
                 console.log(
-                    `Token-${i} deployed at address: ${tokenContract.address} with tx hash: ${tokenContract.deployTransaction.hash}`
+                    `Token-${i} deployed at address: ${tokenContract.address} with tx hash: ${tokenContract.deployTransaction.hash}
+                    NOTE: manually, copy this address to your .env file for next runs.`
                 )
-                this.tokens.push(tokenContract)
+
+                // set the new token contract into corresponding index of the array
+                this.tokens[i] = tokenContract
             }
         }
     }
@@ -98,10 +101,10 @@ export class TokenBridge {
         const paddedPeerAddress = hexZeroPad(othersPeerAddress, 32)
 
         if (!(await TokenBridge.isPeerSet(tokenContract, othersEndpointId, othersPeerAddress))) {
-            console.log(`Incorrect peer was set on ${networkName}`)
+            console.log(`Incorrect/No peer was set on ${networkName}.`)
             const tx = await tokenContract.connect(owner).setPeer(othersEndpointId, paddedPeerAddress)
             await tx.wait()
-            console.log(`Now, correct peer set on ${networkName} via tx hash: ${tx.hash}`)
+            console.log(`\tSo, correct peer set on ${networkName} via tx hash: ${tx.hash}`)
         }
     }
 
@@ -181,13 +184,13 @@ export class TokenBridge {
         srcSigner: ethers.Wallet,
         amount: BigNumber,
         dstEid: BigNumberish,
-        dstTokenAddress: string
+        recipientAddress: string
     ): Promise<void> {
         // TODO: add gas limit as param by fetching from the network on real-time
         const options = Options.newOptions().addExecutorLzReceiveOption(200000, 0).toHex().toString()
         const sendParams: SendParamStruct = {
             dstEid,
-            to: ethers.utils.hexZeroPad(dstTokenAddress, 32),
+            to: ethers.utils.hexZeroPad(recipientAddress, 32),
             amountLD: amount,
             minAmountLD: amount, // TODO: try with some min. amount instead of same as amount
             extraOptions: options,
@@ -205,7 +208,7 @@ export class TokenBridge {
             .send(sendParams, messagingFee, srcSigner.address, { value: messagingFee.nativeFee })
         await sendTx.wait()
         console.log(
-            `Tx hash for sending tokens from contract \'${srcToken.address.slice(0, 6)}...${srcToken.address.slice(-4)}\': \'${sendTx.hash}\'`
+            `Tx hash for sending tokens from contract \'${srcToken.address.slice(0, 6)}...${srcToken.address.slice(-4)}\': \n\t\'${sendTx.hash}\'`
         )
     }
 }
