@@ -49,7 +49,7 @@ async function main() {
             tokenBridge.signers[0],
             ethers.utils.parseUnits('1', 18), // 1 TSSC
             tokenBridge.endpointIds[1],
-            tokenBridge.tokens[1].address
+            tokenBridge.signers[1].address // sender (on srcChain) sending to itself (on dstChain)
         )
 
         // send tokens from Mumbai to Sepolia
@@ -58,12 +58,12 @@ async function main() {
             tokenBridge.signers[1],
             ethers.utils.parseUnits('1', 18), // 1 TSSC
             tokenBridge.endpointIds[0],
-            tokenBridge.tokens[0].address
+            tokenBridge.signers[0].address // sender (on srcChain) sending to itself (on dstChain)
         )
 
         // NOTE:
         // - The sum of total supply of both the chains should 2M (as minted to each chain during deployment),
-        // unless there is some delay in indexing info.
+        // unless there is some delay in indexing info from LZ.
         // - Ideally one should put a sleep of 6 mins or more in between before displaying the accurate info.
         await tokenBridge.getTotalSuppliesOf()
 
