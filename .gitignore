@@ -26,3 +26,6 @@ pnpm-error.log
 
 # remix
 .deploys
+
+# yarn
+.yarn/

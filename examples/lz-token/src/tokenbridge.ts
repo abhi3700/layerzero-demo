@@ -1,5 +1,5 @@
 import { Contract, ethers, BigNumber, ContractFactory, BigNumberish } from 'ethers'
-import { SendParamStruct, MessagingFeeStruct } from './typechain/contracts/MyToken'
+import { SendParamStruct, MessagingFeeStruct } from '../../../build/typechain/contracts/MyToken'
 import { Options } from '@layerzerolabs/lz-v2-utilities'
 import { hexZeroPad } from 'ethers/lib/utils'
 

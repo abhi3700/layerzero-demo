@@ -13,7 +13,7 @@
     "doc": "typedoc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint . --ext .ts",
-    "start": "tsc && node dist/index.js"
+    "start": "tsc && node dist/examples/lz-token/src/index.js"
   },
   "dependencies": {
     "@layerzerolabs/lz-v2-utilities": "^2.1.24",
