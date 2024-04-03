@@ -8,6 +8,6 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["./src", "../../build/typechain"],
+  "include": ["./src", "../build/typechain"],
   "exclude": ["node_modules", "dist"]
 }

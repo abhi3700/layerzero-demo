@@ -16,8 +16,10 @@ yarn
 yarn build
 ```
 
-## Run
+## Demos
+
+In order to run demos,
 
 ```sh
-yarn start
+yarn lz-token
 ```
