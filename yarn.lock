@@ -873,11 +873,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@layerzerolabs/devtools-evm-hardhat@npm:~0.2.15":
-  version: 0.2.15
-  resolution: "@layerzerolabs/devtools-evm-hardhat@npm:0.2.15"
+"@layerzerolabs/devtools-evm-hardhat@npm:~0.3.2":
+  version: 0.3.2
+  resolution: "@layerzerolabs/devtools-evm-hardhat@npm:0.3.2"
   dependencies:
-    "@layerzerolabs/export-deployments": "npm:~0.0.4"
+    "@layerzerolabs/export-deployments": "npm:~0.0.5"
     "@safe-global/protocol-kit": "npm:^1.3.0"
     micro-memoize: "npm:~4.1.2"
     p-memoize: "npm:~4.0.4"
@@ -887,21 +887,21 @@ __metadata:
     "@ethersproject/abstract-signer": ^5.7.0
     "@ethersproject/contracts": ^5.7.0
     "@ethersproject/providers": ^5.7.0
-    "@layerzerolabs/devtools": ~0.2.10
-    "@layerzerolabs/devtools-evm": ~0.2.12
+    "@layerzerolabs/devtools": ~0.3.3
+    "@layerzerolabs/devtools-evm": ~0.3.2
     "@layerzerolabs/io-devtools": ~0.1.5
     "@layerzerolabs/lz-definitions": ~2.1.15
     "@nomiclabs/hardhat-ethers": ^2.2.3
     fp-ts: ^2.16.2
     hardhat: ^2.19.4
     hardhat-deploy: ^0.11.45
-  checksum: 10c0/97d1d89f04afedc875c39c19e7ec963a400e565f31dd141f07c99b5e70207738035c4c0884b21a8c61faee75a1f96aa884522e728a9f3f159c2e90f828511867
+  checksum: 10c0/56aecdd30de6e1bf39e7ee7b41cdbeb4bdcc8055dd3dffbb861173eb4b67d21ab5d433ae863a8bd4f39ef2dd96f6de5d4b651e2adf2539d3302180d63544d7aa
   languageName: node
   linkType: hard
 
-"@layerzerolabs/devtools-evm@npm:~0.2.12":
-  version: 0.2.12
-  resolution: "@layerzerolabs/devtools-evm@npm:0.2.12"
+"@layerzerolabs/devtools-evm@npm:~0.3.2":
+  version: 0.3.2
+  resolution: "@layerzerolabs/devtools-evm@npm:0.3.2"
   dependencies:
     "@safe-global/api-kit": "npm:^1.3.0"
     "@safe-global/protocol-kit": "npm:^1.3.0"
@@ -916,18 +916,18 @@ __metadata:
     "@ethersproject/constants": ^5.7.0
     "@ethersproject/contracts": ^5.7.0
     "@ethersproject/providers": ^5.7.0
-    "@layerzerolabs/devtools": ~0.2.10
+    "@layerzerolabs/devtools": ~0.3.3
     "@layerzerolabs/io-devtools": ~0.1.5
     "@layerzerolabs/lz-definitions": ~2.1.15
     fp-ts: ^2.16.2
     zod: ^3.22.4
-  checksum: 10c0/62f7db5a379d76a8ce5e5c646ca963c146b569d3f1a259152a35e292096042f3ef88710d6896d042e0692be6f5f18f2bb9e6acc3eb4cdd3fed8bc4042bf0662d
+  checksum: 10c0/452ea590f38714c0554d3544be706866f4e264607b21bdce289e092c55f7cee1d2ec39188579cf162e0d76902e2a04a7915edbdab338760a600dfaf60a0fd447
   languageName: node
   linkType: hard
 
-"@layerzerolabs/devtools@npm:~0.2.10":
-  version: 0.2.10
-  resolution: "@layerzerolabs/devtools@npm:0.2.10"
+"@layerzerolabs/devtools@npm:~0.3.3":
+  version: 0.3.3
+  resolution: "@layerzerolabs/devtools@npm:0.3.3"
   dependencies:
     exponential-backoff: "npm:~3.1.1"
     js-yaml: "npm:~4.1.0"
@@ -936,16 +936,16 @@ __metadata:
     "@layerzerolabs/io-devtools": ~0.1.5
     "@layerzerolabs/lz-definitions": ~2.1.15
     zod: ^3.22.4
-  checksum: 10c0/cc97df5da63b1e0410a58699051f0441f9365dd5baa1acf6a866b841887ab3eba9ecf2eef96136b6ecfd1098f2bdc4c6f82e8f67981339a9cf4dbbd1ebec0719
+  checksum: 10c0/d35d70ca6c523fbfde83c3e2fb53d89a40bc54dc1cc91632ca71340f456732de115319d8d3dbaa418faf2c069e672a754bc201075fb639bd1ad1ffd98f3ef2fd
   languageName: node
   linkType: hard
 
-"@layerzerolabs/eslint-config-next@npm:^2.1.18":
-  version: 2.1.24
-  resolution: "@layerzerolabs/eslint-config-next@npm:2.1.24"
+"@layerzerolabs/eslint-config-next@npm:~2.1.27":
+  version: 2.1.27
+  resolution: "@layerzerolabs/eslint-config-next@npm:2.1.27"
   dependencies:
-    "@typescript-eslint/eslint-plugin": "npm:^6.13.2"
-    "@typescript-eslint/parser": "npm:^6.13.2"
+    "@typescript-eslint/eslint-plugin": "npm:^7.5.0"
+    "@typescript-eslint/parser": "npm:^7.5.0"
     eslint: "npm:^8.55.0"
     eslint-config-prettier: "npm:^9.1.0"
     eslint-import-resolver-typescript: "npm:^3.6.1"
@@ -953,38 +953,38 @@ __metadata:
     eslint-plugin-prettier: "npm:^5.0.1"
     eslint-plugin-unused-imports: "npm:^3.0.0"
     prettier: "npm:^3.2.4"
-  checksum: 10c0/3a734d08b45199a64db26cd33ea9440b5bbaf23b29f3502f5826e6c51ee7ed8e908528bac444c5ff3e2324793288d17f325efb814cef5c9ec9a67fc5a8eb5a10
+  checksum: 10c0/bd7351b118415295d8b321271b62b1374417f057f5a6529209af99a06a68ae52908472f0bf259562a17725fb8a21a0927ebfeeac6ca2f9d6a1f301f51acb2f7e
   languageName: node
   linkType: hard
 
-"@layerzerolabs/evm-sdks-core@npm:^2.1.24":
-  version: 2.1.24
-  resolution: "@layerzerolabs/evm-sdks-core@npm:2.1.24"
+"@layerzerolabs/evm-sdks-core@npm:^2.1.27":
+  version: 2.1.27
+  resolution: "@layerzerolabs/evm-sdks-core@npm:2.1.27"
   dependencies:
     ethers: "npm:^5.7.2"
-  checksum: 10c0/6a19e9ccfe4cd633def03a5b52a5bdcd48766cefe4e13cca8d553565d3a774dc701a19319fc010f87b6bee74e32025f94e5026da3ecc4f7af855ac47b9f6f047
+  checksum: 10c0/349520cbbc89c073e7c41deed23cf14cb714a7339c85c1947666bce4d21cf01704fd5d1d9a5d1dc797874edf507cf0d6e241424afee06af49b2bb1a9bb0c9f5f
   languageName: node
   linkType: hard
 
-"@layerzerolabs/export-deployments@npm:~0.0.4":
-  version: 0.0.4
-  resolution: "@layerzerolabs/export-deployments@npm:0.0.4"
+"@layerzerolabs/export-deployments@npm:~0.0.5":
+  version: 0.0.5
+  resolution: "@layerzerolabs/export-deployments@npm:0.0.5"
   dependencies:
     typescript: "npm:^5.3.3"
   bin:
     export-deployments: cli.js
-  checksum: 10c0/b9b8c39d58f15bda8c046654e2e661e43fcf506839e6f712f68c943c6b283977cafa9673d887b2c50bc8b179e4743c88594f0b2aecb9ea569867bbb26637aa5a
+  checksum: 10c0/8fb89f1241dfdd9097f8f5ca828911852c5b6e4b31b37874ccba4a14e35a05c00d1e05a3cae0d111c07c818c350467a94b86e88863b50a77388bc3596c42284b
   languageName: node
   linkType: hard
 
-"@layerzerolabs/io-devtools@npm:~0.1.5":
-  version: 0.1.6
-  resolution: "@layerzerolabs/io-devtools@npm:0.1.6"
+"@layerzerolabs/io-devtools@npm:~0.1.6":
+  version: 0.1.7
+  resolution: "@layerzerolabs/io-devtools@npm:0.1.7"
   dependencies:
     chalk: "npm:^4.1.2"
-    cli-table3: "npm:^0.6.3"
     logform: "npm:^2.6.0"
     prompts: "npm:^2.4.2"
+    table: "npm:~6.8.2"
     winston: "npm:^3.11.0"
   peerDependencies:
     ink: ^3.2.0
@@ -1004,29 +1004,29 @@ __metadata:
       optional: true
     yoga-layout-prebuilt:
       optional: true
-  checksum: 10c0/51a1ff7035b640d36f3f7ed5cd8457dbb248c8afb76204de50e74ff6a328ca6415db76bd44c0deef70c8baede62ba4a755ecbcd61b55c06866eb2c9b912d8eca
+  checksum: 10c0/6c312864381e2460e3f02af4ef8f2df571a297c131908ccd0490cb75add414d5363adb8216b11424a272d9699e4d77f2b60a2fee86ab72c6f941aadb4b88e07c
   languageName: node
   linkType: hard
 
-"@layerzerolabs/lz-definitions@npm:~2.1.18":
-  version: 2.1.24
-  resolution: "@layerzerolabs/lz-definitions@npm:2.1.24"
+"@layerzerolabs/lz-definitions@npm:~2.1.25, @layerzerolabs/lz-definitions@npm:~2.1.27":
+  version: 2.1.27
+  resolution: "@layerzerolabs/lz-definitions@npm:2.1.27"
   dependencies:
     tiny-invariant: "npm:^1.3.1"
-  checksum: 10c0/e0fb88365b2265e255998af72906497b567eaba697f7e368fb1aa21141bb6d6b02b530e3f0364223b13696fe18da1ba69529aaa8f91204e8d643424123799d88
+  checksum: 10c0/f6c461d6b27d22829c6b5ee05dd2cd9a54e54033922ae2433e26aeaa4898f2851165c985ea952c673f2f61e23297a7cd409b4836c7016596cd6619ebb9fe1459
   languageName: node
   linkType: hard
 
-"@layerzerolabs/lz-evm-messagelib-v2@npm:~2.1.18":
-  version: 2.1.24
-  resolution: "@layerzerolabs/lz-evm-messagelib-v2@npm:2.1.24"
+"@layerzerolabs/lz-evm-messagelib-v2@npm:~2.1.27":
+  version: 2.1.27
+  resolution: "@layerzerolabs/lz-evm-messagelib-v2@npm:2.1.27"
   peerDependencies:
     "@arbitrum/nitro-contracts": ^1.1.0
     "@axelar-network/axelar-gmp-sdk-solidity": ^5.6.4
     "@chainlink/contracts-ccip": ^0.7.6
     "@eth-optimism/contracts": ^0.6.0
-    "@layerzerolabs/lz-evm-protocol-v2": ^2.1.24
-    "@layerzerolabs/lz-evm-v1-0.7": ^2.1.24
+    "@layerzerolabs/lz-evm-protocol-v2": ^2.1.27
+    "@layerzerolabs/lz-evm-v1-0.7": ^2.1.27
     "@openzeppelin/contracts": ^4.8.1 || ^5.0.0
     "@openzeppelin/contracts-upgradeable": ^4.8.1 || ^5.0.0
     hardhat-deploy: ^0.11.44
@@ -1034,73 +1034,73 @@ __metadata:
   peerDependenciesMeta:
     "@arbitrum/nitro-contracts":
       optional: true
-  checksum: 10c0/295d2ca3ff1b0142054783c539b2664f3c5846867b7af950e8ea6ed9d8e1364856f1001189a3b1ab8378f6d7620256d064c45d199d6af6b2c8081a9343c44b29
+  checksum: 10c0/c3f56de80d4ff61aec77ae65ea1b00b2d91169e67071b74ffe71e67b1f84c76b79f34f604fffc55cdf9650ebfd1ceac4aef178b8f1ce5decdef9e9f24fd44a68
   languageName: node
   linkType: hard
 
-"@layerzerolabs/lz-evm-oapp-v2@npm:~2.1.18":
-  version: 2.1.24
-  resolution: "@layerzerolabs/lz-evm-oapp-v2@npm:2.1.24"
+"@layerzerolabs/lz-evm-oapp-v2@npm:~2.1.27":
+  version: 2.1.27
+  resolution: "@layerzerolabs/lz-evm-oapp-v2@npm:2.1.27"
   peerDependencies:
-    "@layerzerolabs/lz-evm-messagelib-v2": ^2.1.24
-    "@layerzerolabs/lz-evm-protocol-v2": ^2.1.24
-    "@layerzerolabs/lz-evm-v1-0.7": ^2.1.24
+    "@layerzerolabs/lz-evm-messagelib-v2": ^2.1.27
+    "@layerzerolabs/lz-evm-protocol-v2": ^2.1.27
+    "@layerzerolabs/lz-evm-v1-0.7": ^2.1.27
     "@openzeppelin/contracts": ^4.8.1 || ^5.0.0
     "@openzeppelin/contracts-upgradeable": ^4.8.1 || ^5.0.0
     hardhat-deploy: ^0.11.44
     solidity-bytes-utils: ^0.8.0
-  checksum: 10c0/a9ab421229244cddc834be6e07a1874b4199387cc12b86bee9dd0c681828190a5d423f253aadae51efcb7a338e5bb183304e1255747045cae178e603c7aa224e
+  checksum: 10c0/c5d2665d20c47b62215830605e379fc0588fdc8d669f19a02e032c697edf0865fa7a31220ea2f4ad54951592694e3761f508104594a929469fdb1d7cad2b4deb
   languageName: node
   linkType: hard
 
-"@layerzerolabs/lz-evm-protocol-v2@npm:~2.1.18":
-  version: 2.1.24
-  resolution: "@layerzerolabs/lz-evm-protocol-v2@npm:2.1.24"
+"@layerzerolabs/lz-evm-protocol-v2@npm:~2.1.27":
+  version: 2.1.27
+  resolution: "@layerzerolabs/lz-evm-protocol-v2@npm:2.1.27"
   peerDependencies:
     "@openzeppelin/contracts": ^4.8.1 || ^5.0.0
     "@openzeppelin/contracts-upgradeable": ^4.8.1 || ^5.0.0
     hardhat-deploy: ^0.11.44
     solidity-bytes-utils: ^0.8.0
-  checksum: 10c0/d7e93530022360bc39cd66c31fe4cf0a5a39b41220dbf4df2c4974c9b06b35657c124bcf730d33c3eba892b2c394229043684848199b3c44c6ea5f5e15216e76
+  checksum: 10c0/8ac418b64230f6d3df9f7b027760a98b45d7adc7c75da605e0cdbe71022aac49a5e81bcda0c7aa28d292c31c2c68273397255d31e6e8a1f24ec32b4f5449c7a4
   languageName: node
   linkType: hard
 
-"@layerzerolabs/lz-evm-sdk-v1@npm:~2.1.18":
-  version: 2.1.24
-  resolution: "@layerzerolabs/lz-evm-sdk-v1@npm:2.1.24"
+"@layerzerolabs/lz-evm-sdk-v1@npm:~2.1.25":
+  version: 2.1.27
+  resolution: "@layerzerolabs/lz-evm-sdk-v1@npm:2.1.27"
   dependencies:
     "@ethersproject/abi": "npm:^5.7.0"
     "@ethersproject/providers": "npm:^5.7.0"
-    "@layerzerolabs/evm-sdks-core": "npm:^2.1.24"
+    "@layerzerolabs/evm-sdks-core": "npm:^2.1.27"
     ethers: "npm:^5.7.2"
-  checksum: 10c0/258470331b031f11349d07639fe1248abd911e471f4fa7d56f8def15c7bdf9a32b541ccbcfd18a24ce3590a9238c2671856bf03a895130d75408d3a732f5ec33
+  checksum: 10c0/d69fabbb53bb505e68900c4e6e2e17370933debf88db41677a7a5e754845199f1ac38169f63dc14402e376af2ed45a6d48d60499b75969e5acf64b0dc6c3937e
   languageName: node
   linkType: hard
 
-"@layerzerolabs/lz-evm-sdk-v2@npm:^2.1.24, @layerzerolabs/lz-evm-sdk-v2@npm:~2.1.18":
-  version: 2.1.24
-  resolution: "@layerzerolabs/lz-evm-sdk-v2@npm:2.1.24"
+"@layerzerolabs/lz-evm-sdk-v2@npm:^2.1.27, @layerzerolabs/lz-evm-sdk-v2@npm:~2.1.25":
+  version: 2.1.27
+  resolution: "@layerzerolabs/lz-evm-sdk-v2@npm:2.1.27"
   dependencies:
-    "@layerzerolabs/evm-sdks-core": "npm:^2.1.24"
+    "@layerzerolabs/evm-sdks-core": "npm:^2.1.27"
     ethers: "npm:^5.7.2"
-  checksum: 10c0/a7b057d6c1a03976aa54c7f359afa29720fc4bcb7b27c45232134ccfb86c6780c8fb771a8f2907a0fc06c70716e5ead0b624f8d5531f1c4baaa746bf94087545
+  checksum: 10c0/58392e62a46342416de4bbdea0dc945e37e34817b5abf253a6aee15d1cb18723c3555b08f89877ef14733a0af516db200be48a36196913af084eb8b4c4e54625
   languageName: node
   linkType: hard
 
-"@layerzerolabs/lz-evm-v1-0.7@npm:~2.1.18":
-  version: 2.1.24
-  resolution: "@layerzerolabs/lz-evm-v1-0.7@npm:2.1.24"
+"@layerzerolabs/lz-evm-v1-0.7@npm:~2.1.27":
+  version: 2.1.27
+  resolution: "@layerzerolabs/lz-evm-v1-0.7@npm:2.1.27"
   peerDependencies:
     "@openzeppelin/contracts": 3.4.2-solc-0.7 || ^3.4.2 || ^4.0.0 || ^5.0.0
     "@openzeppelin/contracts-upgradeable": 3.4.2-solc-0.7 || ^3.4.2 || ^4.0.0 || ^5.0.0
     hardhat-deploy: ^0.11.44
-  checksum: 10c0/5bf16d6d76606f44b1312ba07824660d35265ed265f90515312439bbbf18b35f126d53acade7c16913eabd757afec0c0766b658359bfe9c5ba991514aadb191c
+  checksum: 10c0/5c4fc74b2c7f8777dd314cdf5b8d436d050621070c2b070c9125138c4ac2da3879fb29d7ac2b14a627cdb055ccb0094ae14b905a8b234a065bf31ae994a61012
   languageName: node
   linkType: hard
 
-"@layerzerolabs/lz-v2-utilities@npm:~2.1.18":
-  version: 2.1.24
-  resolution: "@layerzerolabs/lz-v2-utilities@npm:2.1.24"
+"@layerzerolabs/lz-v2-utilities@npm:~2.1.25, @layerzerolabs/lz-v2-utilities@npm:~2.1.27":
+  version: 2.1.27
+  resolution: "@layerzerolabs/lz-v2-utilities@npm:2.1.27"
   dependencies:
     "@ethersproject/abi": "npm:^5.7.0"
     "@ethersproject/address": "npm:^5.7.0"
@@ -1108,27 +1108,27 @@ __metadata:
     "@ethersproject/bytes": "npm:^5.7.0"
     "@ethersproject/keccak256": "npm:^5.7.0"
     "@ethersproject/solidity": "npm:^5.7.0"
-    "@layerzerolabs/lz-evm-sdk-v2": "npm:^2.1.24"
+    "@layerzerolabs/lz-evm-sdk-v2": "npm:^2.1.27"
     "@solana/web3.js": "npm:^1.87.6"
     tiny-invariant: "npm:^1.3.1"
-  checksum: 10c0/c7f57b3f951abcf09660445620386afdc70902826e1722946c56f5fd524154f3f76fabe75e59098d27afca3a029eccf2019f199bf4563aff95b70185815a5c48
+  checksum: 10c0/0c2b8a05e8a786980a02ad302110753363657464c5270103a0a68567c182c1936083761720167ad7487bf6332049972403b31680c2cec537d01510f743844e2f
   languageName: node
   linkType: hard
 
-"@layerzerolabs/prettier-config-next@npm:^2.1.18":
-  version: 2.1.24
-  resolution: "@layerzerolabs/prettier-config-next@npm:2.1.24"
+"@layerzerolabs/prettier-config-next@npm:^2.1.27":
+  version: 2.1.27
+  resolution: "@layerzerolabs/prettier-config-next@npm:2.1.27"
   dependencies:
     prettier: "npm:^3.2.4"
     prettier-plugin-packagejson: "npm:^2.4.7"
     prettier-plugin-solidity: "npm:^1.2.0"
-  checksum: 10c0/5038261db754ab7d79174d7f19678833dfa7a455ef7cea75b2b194d40a4f4a60150bfff3d271a45529e67fa6e17d395902e2cdf15069d9355c5e7e495ed25ca6
+  checksum: 10c0/0d6988bc8ed6bedacb64f74a2e9dc5c0c46d1b521507a70ce059365b0669478efc2719e607edc39275883da28b98a518815203967cf552106b3020cf76e5cdb3
   languageName: node
   linkType: hard
 
-"@layerzerolabs/protocol-devtools-evm@npm:~0.2.9":
-  version: 0.2.9
-  resolution: "@layerzerolabs/protocol-devtools-evm@npm:0.2.9"
+"@layerzerolabs/protocol-devtools-evm@npm:~0.3.1":
+  version: 0.3.1
+  resolution: "@layerzerolabs/protocol-devtools-evm@npm:0.3.1"
   dependencies:
     p-memoize: "npm:~4.0.4"
   peerDependencies:
@@ -1138,39 +1138,39 @@ __metadata:
     "@ethersproject/constants": ^5.7.0
     "@ethersproject/contracts": ^5.7.0
     "@ethersproject/providers": ^5.7.0
-    "@layerzerolabs/devtools": ~0.2.10
-    "@layerzerolabs/devtools-evm": ~0.2.12
+    "@layerzerolabs/devtools": ~0.3.3
+    "@layerzerolabs/devtools-evm": ~0.3.2
     "@layerzerolabs/io-devtools": ~0.1.5
     "@layerzerolabs/lz-definitions": ~2.1.15
-    "@layerzerolabs/protocol-devtools": ~0.2.9
+    "@layerzerolabs/protocol-devtools": ~0.3.2
     zod: ^3.22.4
-  checksum: 10c0/f0ac090a9a3d9b16ec96980bbe5fb5f7c57d5eb9f7c955cb982ca81e715920d473476b52384a6c46109a077806e76e15909f6c8a7877501ae85ed1ec556f1fcc
+  checksum: 10c0/e5ba8126c7b1161610f0e7576e5b1655bad1edc1ef6c5e50c83c1e18dc83f47653a9fe6e09eb9cf3f3ac466dcca75d00461b3fdad91a5a0e0ddcec0ae1bfe31f
   languageName: node
   linkType: hard
 
-"@layerzerolabs/protocol-devtools@npm:~0.2.9":
-  version: 0.2.9
-  resolution: "@layerzerolabs/protocol-devtools@npm:0.2.9"
+"@layerzerolabs/protocol-devtools@npm:~0.3.2":
+  version: 0.3.2
+  resolution: "@layerzerolabs/protocol-devtools@npm:0.3.2"
   peerDependencies:
-    "@layerzerolabs/devtools": ~0.2.10
+    "@layerzerolabs/devtools": ~0.3.3
     "@layerzerolabs/lz-definitions": ~2.1.15
     zod: ^3.22.4
-  checksum: 10c0/f0857d7b242a915364dd61b065bc2fe73547c5d59bcc3561bbeb2e79de15234e099feaaaa0dc843d01138998d3519daaa66bd50616109f5f1a7323572116dd9a
+  checksum: 10c0/7968506dba72e447a70b6af8f8b6af024e79563e2ce722d8c20c6871f43eb978709afa82d433128aed00c467726ff3ce639fd5bd9b61e5d8d50219b6e19fde24
   languageName: node
   linkType: hard
 
-"@layerzerolabs/solhint-config@npm:^2.1.18":
-  version: 2.1.24
-  resolution: "@layerzerolabs/solhint-config@npm:2.1.24"
+"@layerzerolabs/solhint-config@npm:^2.1.27":
+  version: 2.1.27
+  resolution: "@layerzerolabs/solhint-config@npm:2.1.27"
   dependencies:
     solhint: "npm:^4.0.0"
-  checksum: 10c0/d66369b8dd5772bf348d542dd344f77b46031b4f19d360181b202c4a852878c0c7c889893a39229985c359078803212927b8f25d9ca47eb4eccfdfa02b71c2b1
+  checksum: 10c0/3b0b607ce996258bb3bebb548c9b233aa5b7d374047d66515ed19070900c1abe41b204eb8f6a9228b1719639fc67978dc450e4ca9ebb38789ba3fa58933bb2d2
   languageName: node
   linkType: hard
 
-"@layerzerolabs/test-devtools-evm-foundry@npm:~0.1.12":
-  version: 0.1.12
-  resolution: "@layerzerolabs/test-devtools-evm-foundry@npm:0.1.12"
+"@layerzerolabs/test-devtools-evm-foundry@npm:~0.2.2":
+  version: 0.2.2
+  resolution: "@layerzerolabs/test-devtools-evm-foundry@npm:0.2.2"
   peerDependencies:
     "@layerzerolabs/lz-evm-messagelib-v2": ~2.1.15
     "@layerzerolabs/lz-evm-oapp-v2": ~2.1.15
@@ -1178,17 +1178,17 @@ __metadata:
     "@layerzerolabs/lz-evm-v1-0.7": ~2.1.15
     "@openzeppelin/contracts": ^4.9.5 || ^5.0.0
     "@openzeppelin/contracts-upgradeable": ^4.9.5 || ^5.0.0
-  checksum: 10c0/1b7bbaface4cf7963528158a6ed3b7c3bcbbee8b80fdd682709ff21510757990f72a47c3b31897608e80461d2646bf77e4aed5384c74d347515551a8e2182750
+  checksum: 10c0/e5243f89f14b1c5a64a85f69807ee4209a496b08ee58d4886d2f760ad637cad3e2caa26ff814e1ba68a2ec0284aa3001cce8f23751efa3c1fe3b42359559df51
   languageName: node
   linkType: hard
 
-"@layerzerolabs/test-devtools-evm-hardhat@npm:~0.1.11":
-  version: 0.1.11
-  resolution: "@layerzerolabs/test-devtools-evm-hardhat@npm:0.1.11"
+"@layerzerolabs/test-devtools-evm-hardhat@npm:~0.2.1":
+  version: 0.2.1
+  resolution: "@layerzerolabs/test-devtools-evm-hardhat@npm:0.2.1"
   peerDependencies:
     hardhat: ^2.19.4
     solidity-bytes-utils: ^0.8.2
-  checksum: 10c0/c4d80cd604300274fedbf936d984d8f21fcf6d7d92befaf3288a42d077840cd6a0456eaf7a6f4e358ef2107d6c3f09a65c99f74de63b27c0827237e885a8f399
+  checksum: 10c0/72deb05b2f6fea0968ee7ced8b53656976c44278211be5002f48cde19ab6dcadbf33044b9be068e9e44075766f5a9a8f5c637fa2d3d7b4305512425c95447427
   languageName: node
   linkType: hard
 
@@ -1199,29 +1199,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@layerzerolabs/toolbox-hardhat@npm:~0.1.14":
-  version: 0.1.15
-  resolution: "@layerzerolabs/toolbox-hardhat@npm:0.1.15"
+"@layerzerolabs/toolbox-hardhat@npm:~0.2.3":
+  version: 0.2.3
+  resolution: "@layerzerolabs/toolbox-hardhat@npm:0.2.3"
   dependencies:
     "@ethersproject/abi": "npm:^5.7.0"
     "@ethersproject/address": "npm:~5.7.0"
     "@ethersproject/bytes": "npm:^5.7.0"
     "@ethersproject/contracts": "npm:^5.7.0"
     "@ethersproject/hash": "npm:^5.7.0"
-    "@layerzerolabs/devtools": "npm:~0.2.10"
-    "@layerzerolabs/devtools-evm": "npm:~0.2.12"
-    "@layerzerolabs/devtools-evm-hardhat": "npm:~0.2.15"
-    "@layerzerolabs/io-devtools": "npm:~0.1.5"
-    "@layerzerolabs/lz-definitions": "npm:~2.1.18"
-    "@layerzerolabs/lz-evm-sdk-v1": "npm:~2.1.18"
-    "@layerzerolabs/lz-evm-sdk-v2": "npm:~2.1.18"
-    "@layerzerolabs/lz-v2-utilities": "npm:~2.1.18"
-    "@layerzerolabs/protocol-devtools": "npm:~0.2.9"
-    "@layerzerolabs/protocol-devtools-evm": "npm:~0.2.9"
-    "@layerzerolabs/test-devtools-evm-hardhat": "npm:~0.1.11"
-    "@layerzerolabs/ua-devtools": "npm:~0.2.11"
-    "@layerzerolabs/ua-devtools-evm": "npm:~0.2.8"
-    "@layerzerolabs/ua-devtools-evm-hardhat": "npm:~0.2.12"
+    "@layerzerolabs/devtools": "npm:~0.3.3"
+    "@layerzerolabs/devtools-evm": "npm:~0.3.2"
+    "@layerzerolabs/devtools-evm-hardhat": "npm:~0.3.2"
+    "@layerzerolabs/io-devtools": "npm:~0.1.6"
+    "@layerzerolabs/lz-definitions": "npm:~2.1.25"
+    "@layerzerolabs/lz-evm-sdk-v1": "npm:~2.1.25"
+    "@layerzerolabs/lz-evm-sdk-v2": "npm:~2.1.25"
+    "@layerzerolabs/lz-v2-utilities": "npm:~2.1.25"
+    "@layerzerolabs/protocol-devtools": "npm:~0.3.2"
+    "@layerzerolabs/protocol-devtools-evm": "npm:~0.3.1"
+    "@layerzerolabs/test-devtools-evm-hardhat": "npm:~0.2.1"
+    "@layerzerolabs/ua-devtools": "npm:~0.3.2"
+    "@layerzerolabs/ua-devtools-evm": "npm:~0.3.2"
+    "@layerzerolabs/ua-devtools-evm-hardhat": "npm:~0.3.4"
     fp-ts: "npm:^2.16.2"
     ink: "npm:^3.2.0"
     ink-gradient: "npm:^2.0.0"
@@ -1234,13 +1234,13 @@ __metadata:
     ethers: ^5.7.0
     hardhat: ^2.19.4
     hardhat-deploy: ^0.11.45
-  checksum: 10c0/4ba3d93667f570ccbe2d4cf42db6f86603017ff276eed09ab16297433a630976ddf6513e8a9410f403f54cd8553ae7dfd9f97a18c04ce16c0c8c75fb0e9c73c3
+  checksum: 10c0/570eaec71497d5a24567bc9e57cdafb6480ebac83d2760fdbe1e8fb3519b6850b6e4170c5ca1b52ac07b0c04d2fe1aa3e530488da412d4fb5310a9f014232695
   languageName: node
   linkType: hard
 
-"@layerzerolabs/ua-devtools-evm-hardhat@npm:~0.2.12":
-  version: 0.2.12
-  resolution: "@layerzerolabs/ua-devtools-evm-hardhat@npm:0.2.12"
+"@layerzerolabs/ua-devtools-evm-hardhat@npm:~0.3.4":
+  version: 0.3.4
+  resolution: "@layerzerolabs/ua-devtools-evm-hardhat@npm:0.3.4"
   dependencies:
     p-memoize: "npm:~4.0.4"
     typescript: "npm:^5.3.3"
@@ -1249,54 +1249,54 @@ __metadata:
     "@ethersproject/bytes": ^5.7.0
     "@ethersproject/contracts": ^5.7.0
     "@ethersproject/hash": ^5.7.0
-    "@layerzerolabs/devtools": ~0.2.10
-    "@layerzerolabs/devtools-evm": ~0.2.12
-    "@layerzerolabs/devtools-evm-hardhat": ~0.2.14
+    "@layerzerolabs/devtools": ~0.3.3
+    "@layerzerolabs/devtools-evm": ~0.3.2
+    "@layerzerolabs/devtools-evm-hardhat": ~0.3.2
     "@layerzerolabs/io-devtools": ~0.1.5
     "@layerzerolabs/lz-definitions": ~2.1.15
-    "@layerzerolabs/protocol-devtools": ~0.2.9
-    "@layerzerolabs/protocol-devtools-evm": ~0.2.8
-    "@layerzerolabs/ua-devtools": ~0.2.11
-    "@layerzerolabs/ua-devtools-evm": ~0.2.8
+    "@layerzerolabs/protocol-devtools": ~0.3.2
+    "@layerzerolabs/protocol-devtools-evm": ~0.3.1
+    "@layerzerolabs/ua-devtools": ~0.3.2
+    "@layerzerolabs/ua-devtools-evm": ~0.3.2
     ethers: ^5.5.2
     hardhat: ^2.19.4
     hardhat-deploy: ^0.11.45
-  checksum: 10c0/880044ebd1f0fa0710275b9c0d2ff9e8adfda836a3d86189201d5f89e9e6a8dc0cd25c2b04cd8e8a791ad1a716bf1e29b24fac41065d9b04cef5c9189653693b
+  checksum: 10c0/2c68d1232642a1fea74f6355feb132ae3f304e270199414758e7cac0f060b5e54efc47f60884e2877259ed24c5c5515511c99306e43c30a3272ce78075618a96
   languageName: node
   linkType: hard
 
-"@layerzerolabs/ua-devtools-evm@npm:~0.2.8":
-  version: 0.2.8
-  resolution: "@layerzerolabs/ua-devtools-evm@npm:0.2.8"
+"@layerzerolabs/ua-devtools-evm@npm:~0.3.2":
+  version: 0.3.2
+  resolution: "@layerzerolabs/ua-devtools-evm@npm:0.3.2"
   dependencies:
     p-memoize: "npm:~4.0.4"
   peerDependencies:
     "@ethersproject/constants": ^5.7.0
     "@ethersproject/contracts": ^5.7.0
-    "@layerzerolabs/devtools": ~0.2.10
-    "@layerzerolabs/devtools-evm": ~0.2.12
+    "@layerzerolabs/devtools": ~0.3.3
+    "@layerzerolabs/devtools-evm": ~0.3.2
     "@layerzerolabs/io-devtools": ~0.1.5
     "@layerzerolabs/lz-definitions": ~2.1.15
     "@layerzerolabs/lz-v2-utilities": ~2.1.15
-    "@layerzerolabs/protocol-devtools": ~0.2.9
-    "@layerzerolabs/protocol-devtools-evm": ~0.2.8
-    "@layerzerolabs/ua-devtools": ~0.2.11
+    "@layerzerolabs/protocol-devtools": ~0.3.2
+    "@layerzerolabs/protocol-devtools-evm": ~0.3.1
+    "@layerzerolabs/ua-devtools": ~0.3.2
     zod: ^3.22.4
-  checksum: 10c0/773c3d21372a482dab0f551042c366dba37bef615adb347556bb988ae00d0109f29cf2e089a8a86ee70fd153b20164a9c832484a053669a26e22e64921db16f2
+  checksum: 10c0/22fb4f788db15ecb424b9364e94f6a18bbafa357fb89f4e863832f099b76a17ffd94c668e638cc7c68d98c5336977eabf9819420e8af3858a9f37e4f5bca14aa
   languageName: node
   linkType: hard
 
-"@layerzerolabs/ua-devtools@npm:~0.2.11":
-  version: 0.2.11
-  resolution: "@layerzerolabs/ua-devtools@npm:0.2.11"
+"@layerzerolabs/ua-devtools@npm:~0.3.2":
+  version: 0.3.2
+  resolution: "@layerzerolabs/ua-devtools@npm:0.3.2"
   peerDependencies:
-    "@layerzerolabs/devtools": ~0.2.10
+    "@layerzerolabs/devtools": ~0.3.3
     "@layerzerolabs/io-devtools": ~0.1.5
     "@layerzerolabs/lz-definitions": ~2.1.15
     "@layerzerolabs/lz-v2-utilities": ~2.1.15
-    "@layerzerolabs/protocol-devtools": ~0.2.9
+    "@layerzerolabs/protocol-devtools": ~0.3.2
     zod: ^3.22.4
-  checksum: 10c0/7b102a44f4e7d6e62702969495821f5cb5fba2118a6d6aef8ac656127beb80d8443a5d789b52606485c6f6a7f651340328781342a744f5ec342ccc374a668aa9
+  checksum: 10c0/b6acaf67eff5d34dd5890a48ede9eea028390dc0a48d465c4ba91b26b5c7c7e8ecf7b2e2e9bb3d7395049dc65bb86d0178cb110e20524b1556d1c0436a37ae15
   languageName: node
   linkType: hard
 
@@ -2255,15 +2255,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^6.13.2":
-  version: 6.21.0
-  resolution: "@typescript-eslint/eslint-plugin@npm:6.21.0"
+"@typescript-eslint/eslint-plugin@npm:^7.5.0":
+  version: 7.5.0
+  resolution: "@typescript-eslint/eslint-plugin@npm:7.5.0"
   dependencies:
     "@eslint-community/regexpp": "npm:^4.5.1"
-    "@typescript-eslint/scope-manager": "npm:6.21.0"
-    "@typescript-eslint/type-utils": "npm:6.21.0"
-    "@typescript-eslint/utils": "npm:6.21.0"
-    "@typescript-eslint/visitor-keys": "npm:6.21.0"
+    "@typescript-eslint/scope-manager": "npm:7.5.0"
+    "@typescript-eslint/type-utils": "npm:7.5.0"
+    "@typescript-eslint/utils": "npm:7.5.0"
+    "@typescript-eslint/visitor-keys": "npm:7.5.0"
     debug: "npm:^4.3.4"
     graphemer: "npm:^1.4.0"
     ignore: "npm:^5.2.4"
@@ -2271,73 +2271,73 @@ __metadata:
     semver: "npm:^7.5.4"
     ts-api-utils: "npm:^1.0.1"
   peerDependencies:
-    "@typescript-eslint/parser": ^6.0.0 || ^6.0.0-alpha
-    eslint: ^7.0.0 || ^8.0.0
+    "@typescript-eslint/parser": ^7.0.0
+    eslint: ^8.56.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/f911a79ee64d642f814a3b6cdb0d324b5f45d9ef955c5033e78903f626b7239b4aa773e464a38c3e667519066169d983538f2bf8e5d00228af587c9d438fb344
+  checksum: 10c0/932a7b5a09c0138ef5a0bf00f8e6039fa209d4047092ffc187de048543c21f7ce24dc14f25f4c87b6f3bbb62335fc952e259e271fde88baf793217bde6460cfa
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^6.13.2":
-  version: 6.21.0
-  resolution: "@typescript-eslint/parser@npm:6.21.0"
+"@typescript-eslint/parser@npm:^7.5.0":
+  version: 7.5.0
+  resolution: "@typescript-eslint/parser@npm:7.5.0"
   dependencies:
-    "@typescript-eslint/scope-manager": "npm:6.21.0"
-    "@typescript-eslint/types": "npm:6.21.0"
-    "@typescript-eslint/typescript-estree": "npm:6.21.0"
-    "@typescript-eslint/visitor-keys": "npm:6.21.0"
+    "@typescript-eslint/scope-manager": "npm:7.5.0"
+    "@typescript-eslint/types": "npm:7.5.0"
+    "@typescript-eslint/typescript-estree": "npm:7.5.0"
+    "@typescript-eslint/visitor-keys": "npm:7.5.0"
     debug: "npm:^4.3.4"
   peerDependencies:
-    eslint: ^7.0.0 || ^8.0.0
+    eslint: ^8.56.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/a8f99820679decd0d115c0af61903fb1de3b1b5bec412dc72b67670bf636de77ab07f2a68ee65d6da7976039bbf636907f9d5ca546db3f0b98a31ffbc225bc7d
+  checksum: 10c0/65521202ff024e79594272fbb7e4731ecf9d2fdd2f58fc81450bfd2bca94ce9c17b0eadd7338c01701f5cf16d38b6c025ed3fc322380b1e4b5424b7484098cda
   languageName: node
   linkType: hard
 
-"@typescript-eslint/scope-manager@npm:6.21.0":
-  version: 6.21.0
-  resolution: "@typescript-eslint/scope-manager@npm:6.21.0"
+"@typescript-eslint/scope-manager@npm:7.5.0":
+  version: 7.5.0
+  resolution: "@typescript-eslint/scope-manager@npm:7.5.0"
   dependencies:
-    "@typescript-eslint/types": "npm:6.21.0"
-    "@typescript-eslint/visitor-keys": "npm:6.21.0"
-  checksum: 10c0/eaf868938d811cbbea33e97e44ba7050d2b6892202cea6a9622c486b85ab1cf801979edf78036179a8ba4ac26f1dfdf7fcc83a68c1ff66be0b3a8e9a9989b526
+    "@typescript-eslint/types": "npm:7.5.0"
+    "@typescript-eslint/visitor-keys": "npm:7.5.0"
+  checksum: 10c0/a017b151a6b39ef591f8e2e65598e005e1b4b2d5494e4b91bddb5856b3a4d57dd8a58d2bc7a140e627eb574f93a2c8fe55f1307aa264c928ffd31d9e190bc5dd
   languageName: node
   linkType: hard
 
-"@typescript-eslint/type-utils@npm:6.21.0":
-  version: 6.21.0
-  resolution: "@typescript-eslint/type-utils@npm:6.21.0"
+"@typescript-eslint/type-utils@npm:7.5.0":
+  version: 7.5.0
+  resolution: "@typescript-eslint/type-utils@npm:7.5.0"
   dependencies:
-    "@typescript-eslint/typescript-estree": "npm:6.21.0"
-    "@typescript-eslint/utils": "npm:6.21.0"
+    "@typescript-eslint/typescript-estree": "npm:7.5.0"
+    "@typescript-eslint/utils": "npm:7.5.0"
     debug: "npm:^4.3.4"
     ts-api-utils: "npm:^1.0.1"
   peerDependencies:
-    eslint: ^7.0.0 || ^8.0.0
+    eslint: ^8.56.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/7409c97d1c4a4386b488962739c4f1b5b04dc60cf51f8cd88e6b12541f84d84c6b8b67e491a147a2c95f9ec486539bf4519fb9d418411aef6537b9c156468117
+  checksum: 10c0/12915d4d1872638f5281e222a0d191676c478f250699c84864862e95a59e708222acefbf7ffdafc0872a007261219a3a2b1e667ff45eeafea7c4bcc5b955262c
   languageName: node
   linkType: hard
 
-"@typescript-eslint/types@npm:6.21.0":
-  version: 6.21.0
-  resolution: "@typescript-eslint/types@npm:6.21.0"
-  checksum: 10c0/020631d3223bbcff8a0da3efbdf058220a8f48a3de221563996ad1dcc30d6c08dadc3f7608cc08830d21c0d565efd2db19b557b9528921c78aabb605eef2d74d
+"@typescript-eslint/types@npm:7.5.0":
+  version: 7.5.0
+  resolution: "@typescript-eslint/types@npm:7.5.0"
+  checksum: 10c0/f3394f71f422dbd89f63b230f20e9769c12e47a287ff30ca03a80714e57ea21279b6f12a8ab14bafb00b59926f20a88894b2d1e72679f7ff298bae112679d4b3
   languageName: node
   linkType: hard
 
-"@typescript-eslint/typescript-estree@npm:6.21.0":
-  version: 6.21.0
-  resolution: "@typescript-eslint/typescript-estree@npm:6.21.0"
+"@typescript-eslint/typescript-estree@npm:7.5.0":
+  version: 7.5.0
+  resolution: "@typescript-eslint/typescript-estree@npm:7.5.0"
   dependencies:
-    "@typescript-eslint/types": "npm:6.21.0"
-    "@typescript-eslint/visitor-keys": "npm:6.21.0"
+    "@typescript-eslint/types": "npm:7.5.0"
+    "@typescript-eslint/visitor-keys": "npm:7.5.0"
     debug: "npm:^4.3.4"
     globby: "npm:^11.1.0"
     is-glob: "npm:^4.0.3"
@@ -2347,34 +2347,34 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/af1438c60f080045ebb330155a8c9bb90db345d5069cdd5d01b67de502abb7449d6c75500519df829f913a6b3f490ade3e8215279b6bdc63d0fb0ae61034df5f
+  checksum: 10c0/ea3a270c725d6be273188b86110e0393052cd64d1c54a56eb5ea405e6d3fbbe84fb3b1ce1b8496a4078ac1eefd37aedcf12be91876764f6de31d5aa5131c7bcd
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:6.21.0":
-  version: 6.21.0
-  resolution: "@typescript-eslint/utils@npm:6.21.0"
+"@typescript-eslint/utils@npm:7.5.0":
+  version: 7.5.0
+  resolution: "@typescript-eslint/utils@npm:7.5.0"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.4.0"
     "@types/json-schema": "npm:^7.0.12"
     "@types/semver": "npm:^7.5.0"
-    "@typescript-eslint/scope-manager": "npm:6.21.0"
-    "@typescript-eslint/types": "npm:6.21.0"
-    "@typescript-eslint/typescript-estree": "npm:6.21.0"
+    "@typescript-eslint/scope-manager": "npm:7.5.0"
+    "@typescript-eslint/types": "npm:7.5.0"
+    "@typescript-eslint/typescript-estree": "npm:7.5.0"
     semver: "npm:^7.5.4"
   peerDependencies:
-    eslint: ^7.0.0 || ^8.0.0
-  checksum: 10c0/ab2df3833b2582d4e5467a484d08942b4f2f7208f8e09d67de510008eb8001a9b7460f2f9ba11c12086fd3cdcac0c626761c7995c2c6b5657d5fa6b82030a32d
+    eslint: ^8.56.0
+  checksum: 10c0/c815ed6909769648953d6963c069038f7cac0c979051b25718feb30e0d3337b9647b75b8de00ac03fe960f0cc8dc4e8a81d4aac4719090a99785e0068712bd24
   languageName: node
   linkType: hard
 
-"@typescript-eslint/visitor-keys@npm:6.21.0":
-  version: 6.21.0
-  resolution: "@typescript-eslint/visitor-keys@npm:6.21.0"
+"@typescript-eslint/visitor-keys@npm:7.5.0":
+  version: 7.5.0
+  resolution: "@typescript-eslint/visitor-keys@npm:7.5.0"
   dependencies:
-    "@typescript-eslint/types": "npm:6.21.0"
+    "@typescript-eslint/types": "npm:7.5.0"
     eslint-visitor-keys: "npm:^3.4.1"
-  checksum: 10c0/7395f69739cfa1cb83c1fb2fad30afa2a814756367302fb4facd5893eff66abc807e8d8f63eba94ed3b0fe0c1c996ac9a1680bcbf0f83717acedc3f2bb724fbf
+  checksum: 10c0/eecf02b8dd54e83738a143aca87b902af4b357028a90fd34ed7a2f40a3ae2f6a188b9ba53903f23c80e868f1fffbb039e9ddb63525438d659707cc7bfb269317
   languageName: node
   linkType: hard
 
@@ -3404,7 +3404,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cli-table3@npm:^0.6.0, cli-table3@npm:^0.6.3":
+"cli-table3@npm:^0.6.0":
   version: 0.6.4
   resolution: "cli-table3@npm:0.6.4"
   dependencies:
@@ -6816,18 +6816,18 @@ __metadata:
   resolution: "layerzero-demo@workspace:."
   dependencies:
     "@babel/core": "npm:^7.23.9"
-    "@layerzerolabs/eslint-config-next": "npm:^2.1.18"
-    "@layerzerolabs/lz-definitions": "npm:~2.1.18"
-    "@layerzerolabs/lz-evm-messagelib-v2": "npm:~2.1.18"
-    "@layerzerolabs/lz-evm-oapp-v2": "npm:~2.1.18"
-    "@layerzerolabs/lz-evm-protocol-v2": "npm:~2.1.18"
-    "@layerzerolabs/lz-evm-v1-0.7": "npm:~2.1.18"
-    "@layerzerolabs/lz-v2-utilities": "npm:~2.1.18"
-    "@layerzerolabs/prettier-config-next": "npm:^2.1.18"
-    "@layerzerolabs/solhint-config": "npm:^2.1.18"
-    "@layerzerolabs/test-devtools-evm-foundry": "npm:~0.1.12"
+    "@layerzerolabs/eslint-config-next": "npm:~2.1.27"
+    "@layerzerolabs/lz-definitions": "npm:~2.1.27"
+    "@layerzerolabs/lz-evm-messagelib-v2": "npm:~2.1.27"
+    "@layerzerolabs/lz-evm-oapp-v2": "npm:~2.1.27"
+    "@layerzerolabs/lz-evm-protocol-v2": "npm:~2.1.27"
+    "@layerzerolabs/lz-evm-v1-0.7": "npm:~2.1.27"
+    "@layerzerolabs/lz-v2-utilities": "npm:~2.1.27"
+    "@layerzerolabs/prettier-config-next": "npm:^2.1.27"
+    "@layerzerolabs/solhint-config": "npm:^2.1.27"
+    "@layerzerolabs/test-devtools-evm-foundry": "npm:~0.2.2"
     "@layerzerolabs/toolbox-foundry": "npm:~0.1.2"
-    "@layerzerolabs/toolbox-hardhat": "npm:~0.1.14"
+    "@layerzerolabs/toolbox-hardhat": "npm:~0.2.3"
     "@nomicfoundation/hardhat-ethers": "npm:^3.0.5"
     "@nomiclabs/hardhat-ethers": "npm:^2.2.3"
     "@openzeppelin/contracts": "npm:^5.0.1"
@@ -6847,6 +6847,7 @@ __metadata:
     prettier: "npm:^3.2.5"
     solhint: "npm:^4.1.1"
     solidity-bytes-utils: "npm:^0.8.2"
+    solmate: "npm:^6.2.0"
     ts-node: "npm:^10.9.2"
     typechain: "npm:^8.3.2"
     typescript: "npm:^5.3.3"
@@ -9103,6 +9104,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"solmate@npm:^6.2.0":
+  version: 6.7.0
+  resolution: "solmate@npm:6.7.0"
+  checksum: 10c0/7c51286ac486de2cace00fd136a210d01e2dc28403373583ce5acd49178f1cf4421d3f3a945f28af36e7fcedcea194238b2b5eb53be78a04b9e04f32ea8d286f
+  languageName: node
+  linkType: hard
+
 "sort-object-keys@npm:^1.1.3":
   version: 1.1.3
   resolution: "sort-object-keys@npm:1.1.3"
@@ -9442,6 +9450,19 @@ __metadata:
     string-width: "npm:^4.2.3"
     strip-ansi: "npm:^6.0.1"
   checksum: 10c0/591ed84b2438b01c9bc02248e2238e21e8bfb73654bc5acca0d469053eb39be3db2f57d600dcf08ac983b6f50f80842c44612c03877567c2afee3aec4a033e5f
+  languageName: node
+  linkType: hard
+
+"table@npm:~6.8.2":
+  version: 6.8.2
+  resolution: "table@npm:6.8.2"
+  dependencies:
+    ajv: "npm:^8.0.1"
+    lodash.truncate: "npm:^4.4.2"
+    slice-ansi: "npm:^4.0.0"
+    string-width: "npm:^4.2.3"
+    strip-ansi: "npm:^6.0.1"
+  checksum: 10c0/f8b348af38ee34e419d8ce7306ba00671ce6f20e861ccff22555f491ba264e8416086063ce278a8d81abfa8d23b736ec2cca7ac4029b5472f63daa4b4688b803
   languageName: node
   linkType: hard
 
