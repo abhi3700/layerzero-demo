@@ -8,26 +8,16 @@ Build Subspace's own DVN
 
 // Import ethers from the ethers package
 import { ethers } from 'ethers'
-import { config } from 'dotenv'
 import { ZERO_ADDRESS } from '../utils'
+import { loadEnv } from '../utils'
 
-// load env vars
-// TODO: add '.env' file check if present
-config()
+loadEnv()
 
 // Example ABI array (simplified) and contract address - replace these with your actual ABI and contract address
 const abi = [
     'event PacketSent(uint64 nonce, uint32 srcEid, address sender, uint32 dstEid, bytes32 receiver, bytes32 guid, bytes message)',
     // Include other functions and events as needed
 ]
-const contractAddress = process.env.NOVA_ENDPOINT_V2 || ZERO_ADDRESS
-
-// This assumes you are running a local Ethereum node on the default HTTP RPC port
-// If you're connecting to a different network or using a WebSocket provider, adjust the provider accordingly
-const provider = new ethers.providers.JsonRpcProvider(process.env.SRC_RPC_URL)
-
-// Create a contract instance
-const contract = new ethers.Contract(contractAddress, abi, provider)
 
 // Listener function for the PacketSent event
 const onPacketSent = (
@@ -52,15 +42,42 @@ const onPacketSent = (
     console.log(`Event data: ${event}`)
 }
 
-// Subscribe to the event
-contract.on('PacketSent', onPacketSent)
+async function main() {
+    try {
+        const contractAddress = process.env.NOVA_ENDPOINT_V2 || ZERO_ADDRESS
 
-console.log(
-    `Listening for 'PacketSent' events from ${contractAddress.slice(0, 6)}...${contractAddress.slice(-4)} on Nova...`
-)
+        // This assumes you are running a local Ethereum node on the default HTTP RPC port
+        // If you're connecting to a different network or using a WebSocket provider, adjust the provider accordingly
+        const provider = new ethers.providers.JsonRpcProvider(process.env.SRC_RPC_URL)
 
-process.on('SIGINT', () => {
-    console.log('Terminating...')
-    // Perform any cleanup here
-    process.exit(0) // Exit cleanly
-})
+        // Create a contract instance
+        const contract = new ethers.Contract(contractAddress, abi, provider)
+
+        // Subscribe to the event
+        contract.on('PacketSent', onPacketSent)
+
+        if (contractAddress === ZERO_ADDRESS) {
+            throw Error('EndpointV2 must be non-zero')
+        }
+
+        // Listen for events on the contract
+        console.log(
+            `Listening for 'PacketSent' events from ${contractAddress.slice(0, 6)}...${contractAddress.slice(-4)} on Nova...`
+        )
+    } catch (error) {
+        throw new Error(`Panicked 😱 with ${error}`)
+    }
+}
+
+main()
+    .then(() => {
+        process.on('SIGINT', () => {
+            console.log('Terminating...')
+            // Perform any cleanup here
+            process.exit(0) // Exit cleanly
+        })
+    })
+    .catch((error) => {
+        console.error(`${error}`)
+        process.exit(1)
+    })

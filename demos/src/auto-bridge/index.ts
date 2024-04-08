@@ -13,17 +13,9 @@ import { WrappedTokenBridge } from './wtokenbridge'
 import { ZERO_ADDRESS } from '../utils'
 import { ethers } from 'ethers'
 import WTsscLzJson from '../../../artifacts/contracts/WTsscLz.sol/WTsscLz.json'
-import { config } from 'dotenv'
-import dotenvExpand from 'dotenv-expand'
+import { loadEnv } from '../utils'
 
-// load env vars
-const myEnv = config()
-dotenvExpand.expand(myEnv)
-
-// Check if the .env file is loaded or specific variables are set
-if (myEnv.error) {
-    throw new Error('Failed to load the .env file.')
-}
+loadEnv()
 
 async function main() {
     try {
@@ -83,7 +75,7 @@ async function main() {
         // await wTokenBridge.getBalancesOf(wTokenBridge.tokens[0].address)
         // await wTokenBridge.getBalancesOf(wTokenBridge.tokens[1].address)
     } catch (error) {
-        throw new Error(`Panicked 😱 with ${error}`)
+        throw Error(`Panicked 😱 with ${error}`)
     }
 }
 

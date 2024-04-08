@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "auto-bridge": "tsc && node dist/demos/src/auto-bridge/index.js",
-    "auto-bridge:dvn": "tsc && node dist/demos/src/auto-bridge/subspace_dvn.js",
+    "auto-bridge:dvn": "tsc && node dist/demos/src/auto-bridge/dvn.js",
     "build": "tsc",
     "clean": "rm -rf dist",
     "clean:all": "rm -rf dist && rm -rf node_modules",
