@@ -5,18 +5,25 @@
  * Takes approx. 5-6 mins to deliver the message to dst chain.
  */
 
-import { TokenBridge, BridgeConfig, ZERO_ADDRESS } from './tokenbridge'
+import { TokenBridge } from '../tokenbridge'
+import { BridgeConfig } from '../types'
+import { ZERO_ADDRESS } from '../utils'
 import { ethers } from 'ethers'
+import MyTokenJson from '../../../artifacts/contracts/MyToken.sol/MyToken.json'
 import { config } from 'dotenv'
+import dotenvExpand from 'dotenv-expand'
 
 // load env vars
-config()
+const myEnv = config()
+dotenvExpand.expand(myEnv)
+
+// Check if the .env file is loaded or specific variables are set
+if (myEnv.error) {
+    throw new Error('Failed to load the .env file.')
+}
 
 async function main() {
     try {
-        // fetch ABI, Bytecode
-        const MyTokenJson = require('../../../artifacts/contracts/MyToken.sol/MyToken.json')
-
         // set params mostly from local files like env, etc.
         const bridgeConfig: BridgeConfig = {
             networkNames: ['Sepolia', 'Mumbai'],
@@ -72,6 +79,7 @@ async function main() {
         await tokenBridge.getBalancesOf(tokenBridge.tokens[0].address)
         await tokenBridge.getBalancesOf(tokenBridge.tokens[1].address)
     } catch (error) {
+        console.error('Error:', error)
         throw new Error(`Panic with ${error}`)
     }
 }

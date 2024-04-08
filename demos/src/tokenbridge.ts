@@ -1,24 +1,13 @@
 import { Contract, ethers, BigNumber, ContractFactory, BigNumberish } from 'ethers'
-import { SendParamStruct, MessagingFeeStruct } from '../../../build/typechain/contracts/MyToken'
+import { SendParamStruct, MessagingFeeStruct } from '../../build/typechain/contracts/MyToken'
 import { Options } from '@layerzerolabs/lz-v2-utilities'
 import { hexZeroPad } from 'ethers/lib/utils'
+import { ZERO_ADDRESS } from './utils'
+import { BridgeConfig } from './types'
 
 /* Constants */
 // TODO: define max. chains
 // const N: number = 2;
-export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
-
-// params loaded from some file(s) like `.env`
-export interface BridgeConfig {
-    networkNames: string[]
-    chainRpcUrls: string[]
-    endpointIds: string[]
-    endpointAddresses: string[]
-    tokenAddresses: string[]
-    privateKey: string
-    abi: any
-    bytecode: string
-}
 
 export class TokenBridge {
     private providers: ethers.providers.JsonRpcProvider[]
@@ -102,9 +91,13 @@ export class TokenBridge {
 
         if (!(await TokenBridge.isPeerSet(tokenContract, othersEndpointId, othersPeerAddress))) {
             console.log(`Incorrect/No peer was set on ${networkName}.`)
-            const tx = await tokenContract.connect(owner).setPeer(othersEndpointId, paddedPeerAddress)
-            await tx.wait()
-            console.log(`\tSo, correct peer set on ${networkName} via tx hash: ${tx.hash}`)
+            const tx = await tokenContract
+                .connect(owner)
+                .setPeer(othersEndpointId, paddedPeerAddress, { gasLimit: 1000000 })
+            const receipt = await tx.wait()
+            console.log(
+                `\tSo, correct peer set on ${networkName} via tx hash: ${tx.hash} in block #${receipt.blockNumber}`
+            )
         }
     }
 
@@ -145,7 +138,8 @@ export class TokenBridge {
         const totalSupplies = []
         for (let i = 0; i < 2; ++i) {
             const totSupply = await this.tokens[i].totalSupply()
-            console.log(`token[${i}]'s total supply: ${ethers.utils.formatEther(totSupply)}`)
+            const symbol = await this.tokens[i].symbol()
+            console.log(`token[${i}]'s total supply: ${ethers.utils.formatEther(totSupply)} ${symbol}`)
             totalSupplies.push(totSupply)
         }
 
@@ -205,10 +199,10 @@ export class TokenBridge {
         // send
         const sendTx = await srcToken
             .connect(srcSigner)
-            .send(sendParams, messagingFee, srcSigner.address, { value: messagingFee.nativeFee })
-        await sendTx.wait()
+            .send(sendParams, messagingFee, srcSigner.address, { value: messagingFee.nativeFee, gasLimit: 8000000 })
+        const receipt = await sendTx.wait()
         console.log(
-            `Tx hash for sending tokens from contract \'${srcToken.address.slice(0, 6)}...${srcToken.address.slice(-4)}\': \n\t\'${sendTx.hash}\'`
+            `Tx hash for sending tokens from contract \'${srcToken.address.slice(0, 6)}...${srcToken.address.slice(-4)}\': \n\t\'${sendTx.hash}\' in block #${receipt.blockNumber}`
         )
     }
 }

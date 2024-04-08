@@ -8,6 +8,7 @@
   "main": "index.js",
   "scripts": {
     "auto-bridge": "tsc && node dist/demos/src/auto-bridge/index.js",
+    "auto-bridge:dvn": "tsc && node dist/demos/src/auto-bridge/subspace_dvn.js",
     "build": "tsc",
     "clean": "rm -rf dist",
     "clean:all": "rm -rf dist && rm -rf node_modules",
@@ -18,7 +19,7 @@
   },
   "dependencies": {
     "@layerzerolabs/lz-v2-utilities": "^2.1.24",
-    "dotenv": "^16.4.5",
+    "dotenv-expand": "^11.0.6",
     "ethers": "^5.7.2"
   },
   "devDependencies": {
@@ -31,5 +32,8 @@
     "ts-jest": "^29.1.1",
     "typedoc": "^0.25.4",
     "typescript": "^5.3.2"
+  },
+  "engines": {
+    "node": "18.18.0"
   }
 }
