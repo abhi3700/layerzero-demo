@@ -1,5 +1,4 @@
 import { Wallet, BigNumber, Contract, BigNumberish } from 'ethers'
-import { WTsscLz } from '../../../build/typechain/contracts/WTsscLz'
 import { TokenBridge } from '../tokenbridge'
 import { BridgeConfig } from '../types'
 import { assert } from 'chai'
@@ -31,6 +30,6 @@ export class WrappedTokenBridge extends TokenBridge {
         assert(amount.lte(currentBalance), "Insufficient WTSSC in sender's balance")
 
         // FIXME: debug this when enabled.
-        // super.sendTokens(srcToken, srcSigner, amount, dstEid, recipientAddress)
+        super.sendTokens(srcToken, srcSigner, amount, dstEid, recipientAddress)
     }
 }

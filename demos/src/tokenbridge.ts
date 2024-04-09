@@ -181,7 +181,9 @@ export class TokenBridge {
         recipientAddress: string
     ): Promise<void> {
         // TODO: add gas limit as param by fetching from the network on real-time
-        const options = Options.newOptions().addExecutorLzReceiveOption(200000, 0).toHex().toString()
+        // 200000 gas limit is for OFT (taken from docs)
+        // 8000000 gas limit set for WTsscLz
+        const options = Options.newOptions().addExecutorLzReceiveOption(8000000, 0).toHex().toString()
         const sendParams: SendParamStruct = {
             dstEid,
             to: ethers.utils.hexZeroPad(recipientAddress, 32),

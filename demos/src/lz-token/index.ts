@@ -60,13 +60,13 @@ async function main() {
         )
 
         // send tokens from Mumbai to Sepolia
-        await TokenBridge.sendTokens(
-            tokenBridge.tokens[1],
-            tokenBridge.signers[1],
-            ethers.utils.parseUnits('1', 18), // 1 TSSC
-            tokenBridge.endpointIds[0],
-            tokenBridge.signers[0].address // sender (on srcChain) sending to itself (on dstChain)
-        )
+        // await TokenBridge.sendTokens(
+        //     tokenBridge.tokens[1],
+        //     tokenBridge.signers[1],
+        //     ethers.utils.parseUnits('1', 18), // 1 TSSC
+        //     tokenBridge.endpointIds[0],
+        //     tokenBridge.signers[0].address // sender (on srcChain) sending to itself (on dstChain)
+        // )
 
         // NOTE:
         // - The sum of total supply of both the chains should 2M (as minted to each chain during deployment),
