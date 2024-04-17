@@ -10,7 +10,6 @@ TODO: Add concurrency to verify, execute txs when they're ready
 
 // Import ethers from the ethers package
 import { ethers } from 'ethers'
-import { ZERO_ADDRESS } from '../utils'
 import { loadEnv } from '../utils'
 
 loadEnv()
@@ -100,7 +99,7 @@ async function main() {
     try {
         // const counterAddress = process.env.COUNTER || ""
         const wTsscLzAddressNova = process.env.WTSSCLZ_NOVA || ''
-        const sendUln302AddressNova = process.env.NOVA_SENDUN302 || ''
+        const sendUln302AddressNova = process.env.NOVA_SENDULN302 || ''
         const endpointV2AddressNova = process.env.NOVA_ENDPOINT_V2 || ''
 
         const wTsscLzAddressSepolia = process.env.WTSSCLZ_SEPOLIA || ''
