@@ -2,24 +2,42 @@
 
 ## Description
 
-This is a boilerplate for typescript projects.
+This aims at demonstrating the usage of the LayerZero OApp/OFT with some customization.
 
 ## Install
 
+> Prerequisite:
+
 ```sh
-yarn
+bun install
 ```
 
 ## Build
 
 ```sh
-yarn build
+bun run build
 ```
 
 ## Demos
 
 In order to run demos,
 
+### A. Send token between any EVM chains
+
 ```sh
-yarn lz-token
+bun lz-token
+```
+
+### B. Subspace's Auto Bridge
+
+1. To host middlelayer (handling DVN, Executor roles), run in terminal-1:
+
+```sh
+bun auto-bridge:dvn
+```
+
+2. To send token, run in terminal-2:
+
+```sh
+bun auto-bridge
 ```

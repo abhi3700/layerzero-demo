@@ -11,3 +11,18 @@ export function loadEnv(): void {
         throw new Error('Failed to load the .env file.')
     }
 }
+
+export function sliceBytes(array: Uint8Array, start: number, length: number): Uint8Array {
+    return array.slice(start, start + length)
+}
+
+// TODO: may use
+// export interface Packet {
+//     nonce: bigint
+//     srcEid: number
+//     sender: string
+//     dstEid: number
+//     receiver: string
+//     guid: string
+//     message: Uint8Array
+// }
