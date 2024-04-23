@@ -2,7 +2,6 @@ import { Wallet, BigNumber, Contract, BigNumberish } from 'ethers'
 import { TokenBridge } from '../tokenbridge'
 import { BridgeConfig } from '../types'
 // import { assert } from 'chai'
-import { expect } from 'bun:test'
 
 export class WrappedTokenBridge extends TokenBridge {
     constructor(config: BridgeConfig, tokenName: string, tokenSymbol: string) {
@@ -29,7 +28,6 @@ export class WrappedTokenBridge extends TokenBridge {
 
         currentBalance = await srcToken.balanceOf(srcSigner.address)
         // assert(amount.lte(currentBalance), "Insufficient WTSSC in sender's balance")
-        expect(amount.lte(currentBalance)).toBe(true)
 
         // FIXME: debug this when enabled.
         super.sendTokens(srcToken, srcSigner, amount, dstEid, recipientAddress)

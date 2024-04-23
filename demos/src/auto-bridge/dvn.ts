@@ -1,6 +1,6 @@
 /* 
 
-This script is for Subspace's native DVN, Exectuor layer.
+This script is to run Subspace's native DVN, Exectuor layer.
 
 All the txs take place on Dst chain (eg. Sepolia in this case).
 
@@ -9,15 +9,24 @@ TODO: Add concurrency to verify, execute txs for scalability
 
 // Import ethers from the ethers package
 import { BigNumber, ethers } from 'ethers'
-import { loadEnv, sliceBytes, deserializePacket, Packet } from '../utils'
+import { loadEnv, sliceBytes } from '../utils'
+import { MessageOrigin, Packet, PacketSerializer, bytes32ToEthAddress } from '@layerzerolabs/lz-v2-utilities'
+import WTsscLzJson from '../../abi/WTsscLz.json'
+import SendUln302Json from '../../abi/SendUln302.json'
+import ReceiveUln302Json from '../../abi/ReceiveUln302.json'
+import EndpointV2Json from '../../abi/EndpointV2.json'
 
 loadEnv()
 
 // Contracts declaration
-let endpointV2Dst: ethers.Contract, wTsscLzDst: ethers.Contract
+let endpointV2Src: ethers.Contract,
+    endpointV2Dst: ethers.Contract,
+    wTsscLzSrc: ethers.Contract,
+    wTsscLzDst: ethers.Contract,
+    sendUln302Src: ethers.Contract
 
 // Signers
-// NOTE: kept same for both src & dst chains
+// NOTE: both src & dst chains kept same for PoC
 let signerSrc: ethers.Wallet, signerDst: ethers.Wallet
 
 // Provider
@@ -26,43 +35,32 @@ let providerDst: ethers.providers.Provider
 // Endpoint IDs
 let srcEid: number, dstEid: number
 
-// Example ABI array (simplified) and contract address - replace these with your actual ABI and contract address
-// const counterAbi = ['event NumberSet(address indexed caller, uint256 newNumber)']
-const wTsscLzAbi = [
-    'event Transfer(address indexed from, address indexed to, uint256 amount)',
-    'event OFTSent(bytes32 indexed guid, uint32 dstEid, address indexed fromAddress, uint256 amountSentLD, uint256 amountReceivedLD)',
-    'event OFTReceived(bytes32 indexed guid, uint32 srcEid, address indexed toAddress, uint256 amountReceivedLD)',
-]
-const sendUln302Abi = [
-    'event DVNFeePaid(address[] requiredDVNs, address[] optionalDVNs, uint256[] fees)',
-    'event ExecutorFeePaid(address executor, uint256 fee)',
-]
+// ABIs
+const wTsscLzAbi = WTsscLzJson.abi
+const sendUln302Abi = SendUln302Json.abi
+const receiverMsgLibAbi = ReceiveUln302Json.abi
+const endpointV2Abi = EndpointV2Json.abi
 
-const receiverMsgLibAbi = [
-    'function verify(bytes calldata _packetHeader, bytes32 _payloadHash, uint64 _confirmations) external',
-    'function commitVerification(bytes calldata _packetHeader, bytes32 _payloadHash) external',
-    // 'function getUlnConfig(address _oapp, uint32 _remoteEid) public view returns (UlnConfig memory rtnConfig)',
-    'function getUlnConfig(address _oapp, uint32 _remoteEid) view returns (tuple(uint confirmations, uint requiredDVNCount, uint optionalDVNCount, uint optionalDVNThreshold, address[] requiredDVNs, address[] optionalDVNs))',
-]
-
-const endpointV2Abi = [
-    'event PacketSent(bytes encodedPayload, bytes options, address sendLibrary)',
-    'event PacketDelivered(Origin origin, address receiver)',
-    // NOTE: In the LZ docs, it can be both `getReceiveLibrary` and `defaultReceiveLibrary`
-    // 'function getReceiveLibrary(address _receiver, uint32 _eid) external view returns (address lib, bool isDefault)',
-    'function defaultReceiveLibrary(uint32 _eid) external view returns (address)',
-]
-
-const onTransferSrc = () => {
-    console.log(`Transfer! Source`)
+const onTransferSrc = async (from: string, to: string, amount: BigNumber, event: ethers.Event) => {
+    console.log(`======Transfer! Source======`)
+    console.log(`\tFrom: ${from}, \n\tTo: ${to}, \n\tAmount: ${amount.toString()}`)
 }
 
-const onExecutorFeePaid = () => {
-    console.log(`Executor Fee Paid!`)
+const onExecutorFeePaid = async (executor: string, fee: BigNumber, event: ethers.Event) => {
+    console.log(`======Executor Fee Paid!======`)
+    console.log(`\tExecutor: ${executor}, \n\tFee: ${fee.toString()}`)
 }
 
-const onDVNFeePaid = () => {
-    console.log(`DVN Fee Paid!`)
+const onDVNFeePaid = async (
+    requiredSrcDVNs: string[],
+    optionalDVNs: string[],
+    fees: BigNumber[],
+    event: ethers.Event
+) => {
+    console.log(`======DVN Fee Paid!======`)
+    console.log(
+        `\tRequired Src DVNs: ${requiredSrcDVNs}, \n\tOptional DVNs: ${optionalDVNs}, \n\tFees: ${fees.toString()}`
+    )
 }
 
 interface UlnConfig {
@@ -86,20 +84,17 @@ function convertUlnConfig(config: UlnConfig) {
 }
 
 // Listener function for the PacketSent event
-const onPacketSent = async (encodedPacketHex: string, event: ethers.Event) => {
-    console.log(`====Packet Sent!`)
-    console.log(`Encoded Packet Hex: ${encodedPacketHex}}`)
+const onPacketSent = async (encodedPacketHex: string, options: string, sendLibrary: string, event: ethers.Event) => {
+    console.log(`====Packet Sent!======`)
+    console.log(`\tEncoded Packet Hex: ${encodedPacketHex}}\n\tOptions: ${options}\n\tSend Library: ${sendLibrary}`)
 
     /* DVN's job */
     // 0x... to bytes array
     const encodedPacket: Uint8Array = ethers.utils.arrayify(encodedPacketHex)
 
     // The DVN first listens for the `PacketSent` event.
-    // TODO: Deserialize packet
-    // const packet: Packet = deserializePacket(encodedPacket)
-    // console.log('Packet: ', packet)
 
-    // TODO: After the PacketSent event, the DVNFeePaid is how you know your DVN has been assigned to verify the packet's payloadHash.
+    // NOTE: After the PacketSent event, the DVNFeePaid is how you know your DVN has been assigned to verify the packet's payloadHash.
 
     // After receiving the fee, your DVN should query the address of the MessageLib on the destination chain
     const receiverMsgLibDstAddress = await endpointV2Dst.defaultReceiveLibrary(srcEid)
@@ -112,8 +107,6 @@ const onPacketSent = async (encodedPacketHex: string, event: ethers.Event) => {
 
     const ulnConfig: UlnConfig = await receiverMsgLibDst.getUlnConfig(wTsscLzDst.address, srcEid)
 
-    // console.log(`Uln config: ${JSON.stringify(ulnConfig)}`)
-    // console.log(`Uln config: ${ulnConfig}`)
     // Convert UlnConfig to a plain object and stringify for readable output
     console.log(`Uln config: ${JSON.stringify(convertUlnConfig(ulnConfig))}`)
 
@@ -124,47 +117,87 @@ const onPacketSent = async (encodedPacketHex: string, event: ethers.Event) => {
     console.log(`Payload Hash: ${payloadHash}`)
 
     // verify
-    // const tx1 = await receiverUln302Sepolia.connect(signerDst).verify(header, payloadHash, ulnConfig.confirmations)
     const tx1 = await receiverMsgLibDst
         .connect(signerDst)
         .verify(packetHeader, payloadHash, ulnConfig.confirmations.toString())
-    const receipt = await tx1.wait()
-    console.log(`Verify | tx hash: ${tx1.hash} in block #${receipt.blockNumber}`)
+    const receipt1 = await tx1.wait()
+    console.log(`Verify | tx hash: ${tx1.hash} in block #${receipt1.blockNumber}`)
 
-    // commit verification
-    const tx2 = await receiverMsgLibDst
-        .connect(signerDst)
-        .commitVerification(packetHeader, payloadHash, { gasLimit: 200000 })
-    const receipt2 = await tx2.wait()
-    console.log(`CommitVerification | tx hash: ${tx2.hash} in block #${receipt2.blockNumber}`)
+    // FIXME: commit verification
+    // const tx2 = await receiverMsgLibDst
+    //     .connect(signerDst)
+    //     .commitVerification(packetHeader, payloadHash, { gasLimit: 200000 })
+    // const receipt2 = await tx2.wait()
+    // console.log(`CommitVerification | tx hash: ${tx2.hash} in block #${receipt2.blockNumber}`)
 
-    /* TODO: Executor's job */
+    /* Executor's job */
+    // NOTE: After the PacketSent event, the ExecutorFeePaid is how you know your Executor has been assigned to verify the packet's payloadHash.
+    // FIXME: Execute i.e. call `lzReceive` fn
+
+    const decodedPacket: Packet = PacketSerializer.deserialize(encodedPacket)
+    console.log(`decodedPacket: ${JSON.stringify(decodedPacket)}`)
+
+    const origin: MessageOrigin = {
+        srcEid: decodedPacket.srcEid,
+        sender: decodedPacket.sender,
+        nonce: decodedPacket.nonce,
+    }
+
+    const tx3 = await endpointV2Dst.connect(signerDst).lzReceive(
+        origin,
+        bytes32ToEthAddress(ethers.utils.arrayify(decodedPacket.receiver)),
+        decodedPacket.guid,
+        decodedPacket.message,
+        ethers.utils.formatBytes32String(''),
+        { gasLimit: 200000 } // actual consumption is somewhere around 40k gas
+    )
+    const receipt3 = await tx3.wait()
+    console.log(`lzReceive | tx hash: ${tx3.hash} in block #${receipt3.blockNumber}`)
 }
 
-const onOFTSent = () => {
-    console.log(`OFT Sent!`)
+const onOFTSent = async (
+    guid: string,
+    dstEid: number,
+    fromAddress: string,
+    amounSentLD: BigNumber,
+    amountReceivedLD: BigNumber,
+    event: ethers.Event
+) => {
+    console.log(`======OFT Sent!======`)
+    console.log(
+        `\tGuid: ${guid}, \n\tDstEid: ${dstEid}, \n\tFrom: ${fromAddress}, \n\tAmountSentLD: ${amounSentLD.toString()}, \n\tAmountReceivedLD: ${amountReceivedLD.toString()}`
+    )
 }
 
-const onTransferDst = () => {
-    console.log(`Transfer! Destination`)
+const onTransferDst = async (from: string, to: string, amount: BigNumber, event: ethers.Event) => {
+    console.log(`======Transfer! Destination======`)
+    console.log(`\tFrom: ${from}, \n\tTo: ${to}, \n\tAmount: ${amount.toString()}`)
 }
 
-const onOFTReceived = () => {
-    console.log(`OFT Received!`)
+const onOFTReceived = async (
+    guid: string,
+    srcEid: number,
+    toAddress: string,
+    amountReceivedLD: BigNumber,
+    event: ethers.Event
+) => {
+    console.log(`======OFT Received!======`)
+    console.log(
+        `\tGuid: ${guid}, \n\tSrcEid: ${srcEid}, \n\tTo: ${toAddress}, \n\tAmountReceivedLD: ${amountReceivedLD.toString()}`
+    )
 }
 
-const onPacketDelivered = () => {
-    console.log(`Packet Delivered!`)
+const onPacketDelivered = async (origin: MessageOrigin, receiver: string, event: ethers.Event) => {
+    console.log(`======Packet Delivered!======`)
+    console.log(`\tOrigin: ${origin}, \n\tReceiver: ${receiver}`)
 }
 
 async function main() {
     try {
-        // const counterAddress = process.env.COUNTER || ""
         const wTsscLzAddressNova = process.env.WTSSCLZ_NOVA || ''
         const sendUln302AddressNova = process.env.NOVA_SENDULN302 || ''
         const endpointV2AddressNova = process.env.NOVA_ENDPOINT_V2 || ''
 
-        const receiverUln302AddressSepolia = process.env.SEPOLIA_RECEIVERULN302 || ''
         const wTsscLzAddressSepolia = process.env.WTSSCLZ_SEPOLIA || ''
         const endpointV2AddressSepolia = process.env.SEPOLIA_ENDPOINT_V2 || ''
 
@@ -173,29 +206,27 @@ async function main() {
         dstEid = Number(process.env.SEPOLIA_ENDPOINT_V2_ID)
 
         // providers
-        const nova_provider = new ethers.providers.JsonRpcProvider(process.env.SRC_RPC_URL)
+        const providerSrc = new ethers.providers.JsonRpcProvider(process.env.SRC_RPC_URL)
         providerDst = new ethers.providers.JsonRpcProvider(process.env.DST_RPC_URL)
 
         // signers
-        signerSrc = new ethers.Wallet(process.env.PRIVATE_KEY || '', nova_provider)
+        signerSrc = new ethers.Wallet(process.env.PRIVATE_KEY || '', providerSrc)
         signerDst = new ethers.Wallet(process.env.PRIVATE_KEY || '', providerDst)
 
         // contract instances
-        // const counterContract = new ethers.Contract(counterAddress, abi, nova_provider)
-        const wTsscLzNova = new ethers.Contract(wTsscLzAddressNova, wTsscLzAbi, nova_provider)
-        const sendUln302Nova = new ethers.Contract(sendUln302AddressNova, sendUln302Abi, nova_provider)
-        const endpointV2Nova = new ethers.Contract(endpointV2AddressNova, endpointV2Abi, nova_provider)
+        wTsscLzSrc = new ethers.Contract(wTsscLzAddressNova, wTsscLzAbi, providerSrc)
+        sendUln302Src = new ethers.Contract(sendUln302AddressNova, sendUln302Abi, providerSrc)
+        endpointV2Src = new ethers.Contract(endpointV2AddressNova, endpointV2Abi, providerSrc)
 
         wTsscLzDst = new ethers.Contract(wTsscLzAddressSepolia, wTsscLzAbi, providerDst)
         endpointV2Dst = new ethers.Contract(endpointV2AddressSepolia, endpointV2Abi, providerDst)
 
-        // Subscribe to the event
-        // counterContract.on('NumberSet', onNumberSet)
-        wTsscLzNova.on('Transfer', onTransferSrc)
-        sendUln302Nova.on('ExecutorFeePaid', onExecutorFeePaid)
-        sendUln302Nova.on('DVNFeePaid', onDVNFeePaid)
-        endpointV2Nova.on('PacketSent', onPacketSent)
-        wTsscLzNova.on('OFTSent', onOFTSent)
+        // Subscribe to the events
+        wTsscLzSrc.on('Transfer', onTransferSrc)
+        sendUln302Src.on('ExecutorFeePaid', onExecutorFeePaid)
+        sendUln302Src.on('DVNFeePaid', onDVNFeePaid)
+        endpointV2Src.on('PacketSent', onPacketSent)
+        wTsscLzSrc.on('OFTSent', onOFTSent)
 
         wTsscLzDst.on('Transfer', onTransferDst)
         wTsscLzDst.on('OFTReceived', onOFTReceived)
@@ -213,7 +244,7 @@ async function main() {
 
         // Listen for events on the contract
         console.log(
-            `Listening for emitted events from ${wTsscLzAddressNova.slice(0, 6)}...${wTsscLzAddressNova.slice(-4)} on Nova...`
+            `Listening for emitted events from WTsscLZ: ${wTsscLzAddressNova.slice(0, 6)}...${wTsscLzAddressNova.slice(-4)} on Nova...`
         )
     } catch (error) {
         throw new Error(`Panicked 😱 with ${error}`)

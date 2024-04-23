@@ -196,7 +196,12 @@ export class TokenBridge {
 
         // get quote before send
         const messagingFee: MessagingFeeStruct = await srcToken.quoteSend(sendParams, false)
-        // console.log('quote: \n nativeFee: ', messagingFee.nativeFee, '\n lzFee: ', messagingFee.lzTokenFee)
+        console.log(
+            'quote: \n nativeFee: ',
+            messagingFee.nativeFee.toString(),
+            '\n lzFee: ',
+            messagingFee.lzTokenFee.toString()
+        )
 
         // send
         const sendTx = await srcToken
