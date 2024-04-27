@@ -1,14 +1,14 @@
 {
   "name": "subspace-lz-demos",
   "version": "0.0.1",
-  "description": "All demos related to Subspace network",
+  "description": "All demos of Subspace network related to LZ",
   "keywords": [],
   "license": "MIT",
   "author": "",
   "main": "index.js",
   "scripts": {
-    "auto-bridge": "tsc && node dist/demos/src/auto-bridge/index.js",
     "auto-bridge:dvn": "tsc && node dist/demos/src/auto-bridge/dvn.js",
+    "auto-bridge:demo": "tsc && node dist/demos/src/auto-bridge/index.js",
     "build": "tsc",
     "clean": "rm -rf dist",
     "clean:all": "rm -rf dist && rm -rf node_modules",

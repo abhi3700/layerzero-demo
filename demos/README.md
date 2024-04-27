@@ -30,14 +30,16 @@ bun lz-token
 
 ### B. Subspace's Auto Bridge
 
-1. To host middlelayer (handling DVN, Executor roles), run in terminal-1:
+1. To send token, run in terminal-1:
+
+```sh
+bun auto-bridge: view
+```
+
+2. To host offchain layer (handling DVN, Executor roles), run in terminal-2:
 
 ```sh
 bun auto-bridge:dvn
 ```
 
-2. To send token, run in terminal-2:
-
-```sh
-bun auto-bridge
-```
+> This keeps running and listens to messages sent over src chain from terminal-1.

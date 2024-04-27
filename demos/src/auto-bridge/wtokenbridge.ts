@@ -1,6 +1,7 @@
 import { Wallet, BigNumber, Contract, BigNumberish } from 'ethers'
 import { TokenBridge } from '../tokenbridge'
 import { BridgeConfig } from '../types'
+import { ethers } from 'ethers'
 // import { assert } from 'chai'
 
 export class WrappedTokenBridge extends TokenBridge {
@@ -23,7 +24,9 @@ export class WrappedTokenBridge extends TokenBridge {
             const amountToDeposit = amount.sub(currentBalance)
             const tx = await srcToken.connect(srcSigner).deposit({ value: amountToDeposit, gasLimit: 8000000 })
             const receipt = await tx.wait()
-            console.log(`Deposited ${amountToDeposit} via tx hash: ${tx.hash} in block #${receipt.blockNumber}`)
+            console.log(
+                `📥 Deposited ${ethers.utils.formatEther(amountToDeposit)} TSSC\n   - Transaction Hash: ${tx.hash}\n   - Block Number: #${receipt.blockNumber}`
+            )
         }
 
         currentBalance = await srcToken.balanceOf(srcSigner.address)

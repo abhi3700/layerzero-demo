@@ -16,13 +16,10 @@ export function sliceBytes(array: Uint8Array, start: number, length: number): Ui
     return array.slice(start, start + length)
 }
 
-// TODO: may use
-// export interface Packet {
-//     nonce: bigint
-//     srcEid: number
-//     sender: string
-//     dstEid: number
-//     receiver: string
-//     guid: string
-//     message: Uint8Array
-// }
+export function getEnvVar(name: string): string {
+    const value = process.env[name]
+    if (!value) {
+        throw new Error(`Please set ${name} in a .env file`)
+    }
+    return value
+}

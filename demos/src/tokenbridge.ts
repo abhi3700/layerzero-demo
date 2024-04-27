@@ -121,31 +121,31 @@ export class TokenBridge {
 
     /// Get balances of an address on both the chains
     public async getBalancesOf(whoAddress: string): Promise<BigNumber[]> {
-        const balances = []
-        for (let i = 0; i < 2; ++i) {
-            const balOwner = await this.tokens[i].balanceOf(whoAddress)
+        const balancePromises = this.tokens.map((token) => token.balanceOf(whoAddress))
+        const balances = await Promise.all(balancePromises)
+
+        // Assuming you want to keep the logs for debugging, you could map over the results to log them
+        balances.forEach((bal, i) => {
             console.log(
-                `Address \'${whoAddress.slice(0, 6)}...${whoAddress.slice(-4)}\' with token-[${i}] has balance: ${ethers.utils.formatEther(balOwner)}`
+                `Address '${whoAddress.slice(0, 6)}...${whoAddress.slice(-4)}' with 🪙 Token-[${i}] balance: ${ethers.utils.formatEther(bal)} wTSSC`
             )
-            balances.push(balOwner)
-        }
+        })
 
         return balances
     }
 
     /// Get the total supply of tokens on both the chains
     public async getTotalSuppliesOf(): Promise<BigNumber[]> {
-        const totalSupplies = []
-        for (let i = 0; i < 2; ++i) {
-            const totSupply = await this.tokens[i].totalSupply()
-            const symbol = await this.tokens[i].symbol()
-            console.log(`token[${i}]'s total supply: ${ethers.utils.formatEther(totSupply)} ${symbol}`)
-            totalSupplies.push(totSupply)
-        }
+        const totalSupplyPromises = this.tokens.map((token) => token.totalSupply())
+        const supplies = await Promise.all(totalSupplyPromises)
 
-        return totalSupplies
+        // If keeping the logs, otherwise remove this block
+        supplies.forEach((supply, index) => {
+            console.log(`🪙 Token[${index}] - Total Supply: ${ethers.utils.formatEther(supply)} wTSSC`)
+        })
+
+        return supplies
     }
-
     /// set enforced params for any contract corresponding to message type like
     ///     SEND, SEND_CALL, etc. which allows to make different message patterns.
     public async setEnforcedParams(token: Contract, otherEndpointId: string) {
@@ -169,7 +169,7 @@ export class TokenBridge {
         // Wait for the transaction to be mined
         await tx.wait()
 
-        console.log('Enforced options set successfully via tx hash: ', tx.hash)
+        console.log(`Enforced options set successfully via tx hash: ${tx.hash}`)
     }
 
     /// send tokens from token A to B on 2 different chains
@@ -195,13 +195,14 @@ export class TokenBridge {
         }
 
         // get quote before send
+        // TODO: Add non-zero fee
         const messagingFee: MessagingFeeStruct = await srcToken.quoteSend(sendParams, false)
-        console.log(
-            'quote: \n nativeFee: ',
-            messagingFee.nativeFee.toString(),
-            '\n lzFee: ',
-            messagingFee.lzTokenFee.toString()
-        )
+        // console.log(
+        //     'quote: \n nativeFee: ',
+        //     messagingFee.nativeFee.toString(),
+        //     '\n lzFee: ',
+        //     messagingFee.lzTokenFee.toString()
+        // )
 
         // send
         const sendTx = await srcToken
@@ -209,7 +210,7 @@ export class TokenBridge {
             .send(sendParams, messagingFee, srcSigner.address, { value: messagingFee.nativeFee, gasLimit: 8000000 })
         const receipt = await sendTx.wait()
         console.log(
-            `Tx hash for sending tokens from contract \'${srcToken.address.slice(0, 6)}...${srcToken.address.slice(-4)}\': \n\t\'${sendTx.hash}\' in block #${receipt.blockNumber}`
+            `📤 Sending ${ethers.utils.formatEther(amount)} wTSSC\n   - Contract: '${srcToken.address.slice(0, 6)}...${srcToken.address.slice(-4)}'\n   - Transaction Hash: ${sendTx.hash}\n   - Block Number: #${receipt.blockNumber}`
         )
     }
 }
