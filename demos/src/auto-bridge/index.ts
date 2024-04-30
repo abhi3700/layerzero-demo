@@ -50,9 +50,6 @@ async function init(): Promise<WrappedTokenBridge> {
     //      take the value from there in next run.
     await wTokenBridge.deployTokens()
 
-    // Set peers, if incorrectly/not set
-    await wTokenBridge.setPeers()
-
     return wTokenBridge
 }
 
@@ -80,7 +77,10 @@ async function sendTokens(wTokenBridge: WrappedTokenBridge): Promise<void> {
 async function runTask(taskName: string) {
     try {
         const wTokenBridge = await init()
-        if (taskName === 'send') {
+        if (taskName === 'init') {
+            // Set peers, if incorrectly/not set
+            await wTokenBridge.setPeers()
+        } else if (taskName === 'send') {
             await sendTokens(wTokenBridge)
         } else if (taskName === 'view') {
             console.log('=====================================================')

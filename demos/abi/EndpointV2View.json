@@ -1,0 +1,563 @@
+{
+    "abi": [
+        {
+            "type": "function",
+            "name": "EMPTY_PAYLOAD_HASH",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "bytes32",
+                    "internalType": "bytes32"
+                }
+            ],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "NIL_PAYLOAD_HASH",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "bytes32",
+                    "internalType": "bytes32"
+                }
+            ],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "endpoint",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address",
+                    "internalType": "contract ILayerZeroEndpointV2"
+                }
+            ],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "executable",
+            "inputs": [
+                {
+                    "name": "_origin",
+                    "type": "tuple",
+                    "internalType": "struct Origin",
+                    "components": [
+                        {
+                            "name": "srcEid",
+                            "type": "uint32",
+                            "internalType": "uint32"
+                        },
+                        {
+                            "name": "sender",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        },
+                        {
+                            "name": "nonce",
+                            "type": "uint64",
+                            "internalType": "uint64"
+                        }
+                    ]
+                },
+                {
+                    "name": "_receiver",
+                    "type": "address",
+                    "internalType": "address"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint8",
+                    "internalType": "enum ExecutionState"
+                }
+            ],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "initializable",
+            "inputs": [
+                {
+                    "name": "_origin",
+                    "type": "tuple",
+                    "internalType": "struct Origin",
+                    "components": [
+                        {
+                            "name": "srcEid",
+                            "type": "uint32",
+                            "internalType": "uint32"
+                        },
+                        {
+                            "name": "sender",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        },
+                        {
+                            "name": "nonce",
+                            "type": "uint64",
+                            "internalType": "uint64"
+                        }
+                    ]
+                },
+                {
+                    "name": "_receiver",
+                    "type": "address",
+                    "internalType": "address"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "bool",
+                    "internalType": "bool"
+                }
+            ],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "initialize",
+            "inputs": [
+                {
+                    "name": "_endpoint",
+                    "type": "address",
+                    "internalType": "address"
+                }
+            ],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "verifiable",
+            "inputs": [
+                {
+                    "name": "_origin",
+                    "type": "tuple",
+                    "internalType": "struct Origin",
+                    "components": [
+                        {
+                            "name": "srcEid",
+                            "type": "uint32",
+                            "internalType": "uint32"
+                        },
+                        {
+                            "name": "sender",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        },
+                        {
+                            "name": "nonce",
+                            "type": "uint64",
+                            "internalType": "uint64"
+                        }
+                    ]
+                },
+                {
+                    "name": "_receiver",
+                    "type": "address",
+                    "internalType": "address"
+                },
+                {
+                    "name": "_receiveLib",
+                    "type": "address",
+                    "internalType": "address"
+                },
+                {
+                    "name": "_payloadHash",
+                    "type": "bytes32",
+                    "internalType": "bytes32"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "bool",
+                    "internalType": "bool"
+                }
+            ],
+            "stateMutability": "view"
+        },
+        {
+            "type": "event",
+            "name": "Initialized",
+            "inputs": [
+                {
+                    "name": "version",
+                    "type": "uint8",
+                    "indexed": false,
+                    "internalType": "uint8"
+                }
+            ],
+            "anonymous": false
+        }
+    ],
+    "bytecode": {
+        "object": "0x608060405234801561001057600080fd5b50610a01806100206000396000f3fe608060405234801561001057600080fd5b506004361061007d5760003560e01c8063861e1ca51161005b578063861e1ca5146100ef578063c4d66de814610112578063cb5026b914610127578063e1e3a7df1461012f57600080fd5b80632baf0be7146100825780634b4b2efb1461009e5780635e280f11146100be575b600080fd5b61008b60001981565b6040519081526020015b60405180910390f35b6100b16100ac366004610826565b610142565b604051610095919061085a565b6000546100d7906201000090046001600160a01b031681565b6040516001600160a01b039091168152602001610095565b6101026100fd366004610826565b6103a1565b6040519015158152602001610095565b610125610120366004610882565b610421565b005b61008b600081565b61010261013d36600461089d565b6105b8565b6000805483516020850151604080870151905163c9fc7bcd60e01b81526001600160a01b03878116600483015263ffffffff9094166024820152604481019290925267ffffffffffffffff16606482015283926201000090049091169063c9fc7bcd90608401602060405180830381865afa1580156101c5573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101e991906108e9565b90508015801561029f5750600054845160208601516040516305b17bb760e41b81526001600160a01b03878116600483015263ffffffff90931660248201526044810191909152620100009092041690635b17bb7090606401602060405180830381865afa15801561025f573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906102839190610902565b67ffffffffffffffff16846040015167ffffffffffffffff1611155b156102ae57600391505061039b565b600019811480159061036657506000548451602086015160405163283750ff60e21b81526001600160a01b03878116600483015263ffffffff9093166024820152604481019190915262010000909204169063a0dd43fc90606401602060405180830381865afa158015610326573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061034a9190610902565b67ffffffffffffffff16846040015167ffffffffffffffff1611155b1561037557600291505061039b565b801580159061038657506000198114155b1561039557600191505061039b565b60009150505b92915050565b6000805460405163861e1ca560e01b8152620100009091046001600160a01b03169063861e1ca5906103d9908690869060040161091f565b602060405180830381865afa1580156103f6573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061041a919061095e565b9392505050565b600061044b7fb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d61035490565b90506001600160a01b03811661048a576001600160a01b037fb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d61035561049f565b336001600160a01b0382161461049f57600080fd5b600054610100900460ff16158080156104bf5750600054600160ff909116105b806104d95750303b1580156104d9575060005460ff166001145b6105415760405162461bcd60e51b815260206004820152602e60248201527f496e697469616c697a61626c653a20636f6e747261637420697320616c72656160448201526d191e481a5b9a5d1a585b1a5e995960921b60648201526084015b60405180910390fd5b6000805460ff191660011790558015610564576000805461ff0019166101001790555b61056d836106ec565b80156105b3576000805461ff0019169055604051600181527f7f26b83ff96e1f2b6a682f133852f6798a09c465da95921460cefb38474024989060200160405180910390a15b505050565b600080548551604051639d7f977560e01b81526001600160a01b03878116600483015263ffffffff90921660248201528582166044820152620100009092041690639d7f977590606401602060405180830381865afa15801561061f573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610643919061095e565b61064f575060006106e4565b60005460405163c9a54a9960e01b8152620100009091046001600160a01b03169063c9a54a9990610686908890889060040161091f565b602060405180830381865afa1580156106a3573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906106c7919061095e565b6106d3575060006106e4565b816106e0575060006106e4565b5060015b949350505050565b600054610100900460ff166107135760405162461bcd60e51b815260040161053890610980565b61071c8161071f565b50565b600054610100900460ff166107465760405162461bcd60e51b815260040161053890610980565b600080546001600160a01b03909216620100000262010000600160b01b0319909216919091179055565b67ffffffffffffffff8116811461071c57600080fd5b60006060828403121561079857600080fd5b6040516060810181811067ffffffffffffffff821117156107c957634e487b7160e01b600052604160045260246000fd5b604052905080823563ffffffff811681146107e357600080fd5b81526020838101359082015260408301356107fd81610770565b6040919091015292915050565b80356001600160a01b038116811461082157600080fd5b919050565b6000806080838503121561083957600080fd5b6108438484610786565b91506108516060840161080a565b90509250929050565b602081016004831061087c57634e487b7160e01b600052602160045260246000fd5b91905290565b60006020828403121561089457600080fd5b61041a8261080a565b60008060008060c085870312156108b357600080fd5b6108bd8686610786565b93506108cb6060860161080a565b92506108d96080860161080a565b9396929550929360a00135925050565b6000602082840312156108fb57600080fd5b5051919050565b60006020828403121561091457600080fd5b815161041a81610770565b825163ffffffff1681526020808401519082015260409283015167ffffffffffffffff16928101929092526001600160a01b0316606082015260800190565b60006020828403121561097057600080fd5b8151801515811461041a57600080fd5b6020808252602b908201527f496e697469616c697a61626c653a20636f6e7472616374206973206e6f74206960408201526a6e697469616c697a696e6760a81b60608201526080019056fea2646970667358221220367aa42266926ebba307d342544a4dcd9b7a7c360f6361c0f872485f63f798f164736f6c63430008180033",
+        "sourceMap": "176:187:44:-:0;;;;;;;;;;;;;;;;;;;",
+        "linkReferences": {}
+    },
+    "deployedBytecode": {
+        "object": "0x608060405234801561001057600080fd5b506004361061007d5760003560e01c8063861e1ca51161005b578063861e1ca5146100ef578063c4d66de814610112578063cb5026b914610127578063e1e3a7df1461012f57600080fd5b80632baf0be7146100825780634b4b2efb1461009e5780635e280f11146100be575b600080fd5b61008b60001981565b6040519081526020015b60405180910390f35b6100b16100ac366004610826565b610142565b604051610095919061085a565b6000546100d7906201000090046001600160a01b031681565b6040516001600160a01b039091168152602001610095565b6101026100fd366004610826565b6103a1565b6040519015158152602001610095565b610125610120366004610882565b610421565b005b61008b600081565b61010261013d36600461089d565b6105b8565b6000805483516020850151604080870151905163c9fc7bcd60e01b81526001600160a01b03878116600483015263ffffffff9094166024820152604481019290925267ffffffffffffffff16606482015283926201000090049091169063c9fc7bcd90608401602060405180830381865afa1580156101c5573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101e991906108e9565b90508015801561029f5750600054845160208601516040516305b17bb760e41b81526001600160a01b03878116600483015263ffffffff90931660248201526044810191909152620100009092041690635b17bb7090606401602060405180830381865afa15801561025f573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906102839190610902565b67ffffffffffffffff16846040015167ffffffffffffffff1611155b156102ae57600391505061039b565b600019811480159061036657506000548451602086015160405163283750ff60e21b81526001600160a01b03878116600483015263ffffffff9093166024820152604481019190915262010000909204169063a0dd43fc90606401602060405180830381865afa158015610326573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061034a9190610902565b67ffffffffffffffff16846040015167ffffffffffffffff1611155b1561037557600291505061039b565b801580159061038657506000198114155b1561039557600191505061039b565b60009150505b92915050565b6000805460405163861e1ca560e01b8152620100009091046001600160a01b03169063861e1ca5906103d9908690869060040161091f565b602060405180830381865afa1580156103f6573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061041a919061095e565b9392505050565b600061044b7fb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d61035490565b90506001600160a01b03811661048a576001600160a01b037fb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d61035561049f565b336001600160a01b0382161461049f57600080fd5b600054610100900460ff16158080156104bf5750600054600160ff909116105b806104d95750303b1580156104d9575060005460ff166001145b6105415760405162461bcd60e51b815260206004820152602e60248201527f496e697469616c697a61626c653a20636f6e747261637420697320616c72656160448201526d191e481a5b9a5d1a585b1a5e995960921b60648201526084015b60405180910390fd5b6000805460ff191660011790558015610564576000805461ff0019166101001790555b61056d836106ec565b80156105b3576000805461ff0019169055604051600181527f7f26b83ff96e1f2b6a682f133852f6798a09c465da95921460cefb38474024989060200160405180910390a15b505050565b600080548551604051639d7f977560e01b81526001600160a01b03878116600483015263ffffffff90921660248201528582166044820152620100009092041690639d7f977590606401602060405180830381865afa15801561061f573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610643919061095e565b61064f575060006106e4565b60005460405163c9a54a9960e01b8152620100009091046001600160a01b03169063c9a54a9990610686908890889060040161091f565b602060405180830381865afa1580156106a3573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906106c7919061095e565b6106d3575060006106e4565b816106e0575060006106e4565b5060015b949350505050565b600054610100900460ff166107135760405162461bcd60e51b815260040161053890610980565b61071c8161071f565b50565b600054610100900460ff166107465760405162461bcd60e51b815260040161053890610980565b600080546001600160a01b03909216620100000262010000600160b01b0319909216919091179055565b67ffffffffffffffff8116811461071c57600080fd5b60006060828403121561079857600080fd5b6040516060810181811067ffffffffffffffff821117156107c957634e487b7160e01b600052604160045260246000fd5b604052905080823563ffffffff811681146107e357600080fd5b81526020838101359082015260408301356107fd81610770565b6040919091015292915050565b80356001600160a01b038116811461082157600080fd5b919050565b6000806080838503121561083957600080fd5b6108438484610786565b91506108516060840161080a565b90509250929050565b602081016004831061087c57634e487b7160e01b600052602160045260246000fd5b91905290565b60006020828403121561089457600080fd5b61041a8261080a565b60008060008060c085870312156108b357600080fd5b6108bd8686610786565b93506108cb6060860161080a565b92506108d96080860161080a565b9396929550929360a00135925050565b6000602082840312156108fb57600080fd5b5051919050565b60006020828403121561091457600080fd5b815161041a81610770565b825163ffffffff1681526020808401519082015260409283015167ffffffffffffffff16928101929092526001600160a01b0316606082015260800190565b60006020828403121561097057600080fd5b8151801515811461041a57600080fd5b6020808252602b908201527f496e697469616c697a61626c653a20636f6e7472616374206973206e6f74206960408201526a6e697469616c697a696e6760a81b60608201526080019056fea2646970667358221220367aa42266926ebba307d342544a4dcd9b7a7c360f6361c0f872485f63f798f164736f6c63430008180033",
+        "sourceMap": "176:187:44:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;564:69:45;;-1:-1:-1;;564:69:45;;;;;160:25:122;;;148:2;133:18;564:69:45;;;;;;;;1784:1246;;;;;;:::i;:::-;;:::i;:::-;;;;;;;:::i;640:36::-;;;;;;;;-1:-1:-1;;;;;640:36:45;;;;;;-1:-1:-1;;;;;2177:32:122;;;2159:51;;2147:2;2132:18;640:36:45;1983:233:122;975:158:45;;;;;;:::i;:::-;;:::i;:::-;;;2386:14:122;;2379:22;2361:41;;2349:2;2334:18;975:158:45;2221:187:122;244:117:44;;;;;;:::i;:::-;;:::i;:::-;;503:55:45;;556:1;503:55;;1186:472;;;;;;:::i;:::-;;:::i;1784:1246::-;1867:14;1915:8;;1954:14;;1970;;;;1986:13;;;;;1915:85;;-1:-1:-1;;;1915:85:45;;-1:-1:-1;;;;;3299:32:122;;;1915:85:45;;;3281:51:122;3380:10;3368:23;;;3348:18;;;3341:51;3408:18;;;3401:34;;;;3483:18;3471:31;3451:18;;;3444:59;1867:14:45;;1915:8;;;;;;;:27;;3253:19:122;;1915:85:45;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;1893:107;-1:-1:-1;2141:33:45;;:134;;;;-1:-1:-1;2207:8:45;;2244:14;;2260;;;;2207:68;;-1:-1:-1;;;2207:68:45;;-1:-1:-1;;;;;3921:32:122;;;2207:68:45;;;3903:51:122;4002:10;3990:23;;;3970:18;;;3963:51;4030:18;;;4023:34;;;;2207:8:45;;;;;;:25;;3876:18:122;;2207:68:45;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;2190:85;;:7;:13;;;:85;;;;2141:134;2124:217;;;2307:23;2300:30;;;;;2124:217;-1:-1:-1;;2495:31:45;;;;;:128;;-1:-1:-1;2559:8:45;;2592:14;;2608;;;;2559:64;;-1:-1:-1;;;2559:64:45;;-1:-1:-1;;;;;3921:32:122;;;2559:64:45;;;3903:51:122;4002:10;3990:23;;;3970:18;;;3963:51;4030:18;;;4023:34;;;;2559:8:45;;;;;;:21;;3876:18:122;;2559:64:45;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;2542:81;;:7;:13;;;:81;;;;2495:128;2478:213;;;2655:25;2648:32;;;;;2478:213;2790:33;;;;;:68;;-1:-1:-1;;;2827:31:45;;;2790:68;2786:145;;;2881:39;2874:46;;;;;2786:145;2995:28;2988:35;;;1784:1246;;;;;:::o;975:158::-;1061:4;1084:8;;:42;;-1:-1:-1;;;1084:42:45;;:8;;;;-1:-1:-1;;;;;1084:8:45;;:22;;:42;;1107:7;;1116:9;;1084:42;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;1077:49;975:158;-1:-1:-1;;;975:158:45:o;244:117:44:-;369:25:119;397:13;1687:66;1681:73;;1499:271;397:13;369:41;-1:-1:-1;;;;;;864:31:119;;860:502;;-1:-1:-1;;;;;1119:66:119;1091:176;860:502;;;1319:10;-1:-1:-1;;;;;1319:31:119;;;1311:40;;;;;;3279:19:93::1;3302:13:::0;::::1;::::0;::::1;;;3301:14;::::0;3347:34;::::1;;;-1:-1:-1::0;3365:12:93::1;::::0;3380:1:::1;3365:12;::::0;;::::1;:16;3347:34;3346:108;;;-1:-1:-1::0;3426:4:93::1;1713:19:96::0;:23;;;3387:66:93::1;;-1:-1:-1::0;3436:12:93::1;::::0;::::1;;::::0;:17:::1;3387:66;3325:201;;;::::0;-1:-1:-1;;;3325:201:93;;5311:2:122;3325:201:93::1;::::0;::::1;5293:21:122::0;5350:2;5330:18;;;5323:30;5389:34;5369:18;;;5362:62;-1:-1:-1;;;5440:18:122;;;5433:44;5494:19;;3325:201:93::1;;;;;;;;;3536:12;:16:::0;;-1:-1:-1;;3536:16:93::1;3551:1;3536:16;::::0;;3562:65;::::1;;;3596:13;:20:::0;;-1:-1:-1;;3596:20:93::1;;;::::0;;3562:65:::1;322:32:44::2;344:9;322:21;:32::i;:::-;3651:14:93::1;3647:99;;;3697:5;3681:21:::0;;-1:-1:-1;;3681:21:93::1;::::0;;3721:14:::1;::::0;-1:-1:-1;5676:36:122;;3721:14:93::1;::::0;5664:2:122;5649:18;3721:14:93::1;;;;;;;3647:99;3269:483;359:1020:119::0;244:117:44;:::o;1186:472:45:-;1350:4;1371:8;;1413:14;;1371:70;;-1:-1:-1;;;1371:70:45;;-1:-1:-1;;;;;5979:15:122;;;1371:70:45;;;5961:34:122;6043:10;6031:23;;;6011:18;;;6004:51;6091:15;;;6071:18;;;6064:43;1371:8:45;;;;;;:30;;5896:18:122;;1371:70:45;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;1366:89;;-1:-1:-1;1450:5:45;1443:12;;1366:89;1471:8;;:39;;-1:-1:-1;;;1471:39:45;;:8;;;;-1:-1:-1;;;;;1471:8:45;;:19;;:39;;1491:7;;1500:9;;1471:39;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;1466:58;;-1:-1:-1;1519:5:45;1512:12;;1466:58;1581:12;1577:52;;-1:-1:-1;1624:5:45;1617:12;;1577:52;-1:-1:-1;1647:4:45;1186:472;;;;;;;:::o;683:135::-;5374:13:93;;;;;;;5366:69;;;;-1:-1:-1;;;5366:69:93;;;;;;;:::i;:::-;769:42:45::1;801:9;769:31;:42::i;:::-;683:135:::0;:::o;824:145::-;5374:13:93;;;;;;;5366:69;;;;-1:-1:-1;;;5366:69:93;;;;;;;:::i;:::-;920:8:45::1;:42:::0;;-1:-1:-1;;;;;920:42:45;;::::1;::::0;::::1;-1:-1:-1::0;;;;;;920:42:45;;::::1;::::0;;;::::1;::::0;;824:145::o;196:129:122:-;281:18;274:5;270:30;263:5;260:41;250:69;;315:1;312;305:12;330:811;383:5;431:4;419:9;414:3;410:19;406:30;403:50;;;449:1;446;439:12;403:50;482:2;476:9;524:4;516:6;512:17;595:6;583:10;580:22;559:18;547:10;544:34;541:62;538:185;;;645:10;640:3;636:20;633:1;626:31;680:4;677:1;670:15;708:4;705:1;698:15;538:185;739:2;732:22;772:6;-1:-1:-1;772:6:122;802:23;;869:10;856:24;;844:37;;834:65;;895:1;892;885:12;834:65;908:23;;992:2;977:18;;;964:32;947:15;;;940:57;1049:2;1034:18;;1021:32;1062;1021;1062;:::i;:::-;1122:2;1110:15;;;;1103:32;330:811;;-1:-1:-1;;330:811:122:o;1146:173::-;1214:20;;-1:-1:-1;;;;;1263:31:122;;1253:42;;1243:70;;1309:1;1306;1299:12;1243:70;1146:173;;;:::o;1324:301::-;1417:6;1425;1478:3;1466:9;1457:7;1453:23;1449:33;1446:53;;;1495:1;1492;1485:12;1446:53;1518:44;1554:7;1543:9;1518:44;:::i;:::-;1508:54;;1581:38;1615:2;1604:9;1600:18;1581:38;:::i;:::-;1571:48;;1324:301;;;;;:::o;1630:348::-;1782:2;1767:18;;1815:1;1804:13;;1794:144;;1860:10;1855:3;1851:20;1848:1;1841:31;1895:4;1892:1;1885:15;1923:4;1920:1;1913:15;1794:144;1947:25;;;1630:348;:::o;2413:186::-;2472:6;2525:2;2513:9;2504:7;2500:23;2496:32;2493:52;;;2541:1;2538;2531:12;2493:52;2564:29;2583:9;2564:29;:::i;2604:445::-;2715:6;2723;2731;2739;2792:3;2780:9;2771:7;2767:23;2763:33;2760:53;;;2809:1;2806;2799:12;2760:53;2832:44;2868:7;2857:9;2832:44;:::i;:::-;2822:54;;2895:38;2929:2;2918:9;2914:18;2895:38;:::i;:::-;2885:48;;2952:39;2986:3;2975:9;2971:19;2952:39;:::i;:::-;2604:445;;;;-1:-1:-1;2942:49:122;;3038:3;3023:19;3010:33;;-1:-1:-1;;2604:445:122:o;3514:184::-;3584:6;3637:2;3625:9;3616:7;3612:23;3608:32;3605:52;;;3653:1;3650;3643:12;3605:52;-1:-1:-1;3676:16:122;;3514:184;-1:-1:-1;3514:184:122:o;4068:249::-;4137:6;4190:2;4178:9;4169:7;4165:23;4161:32;4158:52;;;4206:1;4203;4196:12;4158:52;4238:9;4232:16;4257:30;4281:5;4257:30;:::i;4322:500::-;4569:13;;4584:10;4565:30;4547:49;;4652:4;4640:17;;;4634:24;4612:20;;;4605:54;4719:4;4707:17;;;4701:24;4727:18;4697:49;4675:20;;;4668:79;;;;-1:-1:-1;;;;;4783:32:122;4778:2;4763:18;;4756:60;4534:3;4519:19;;4322:500::o;4827:277::-;4894:6;4947:2;4935:9;4926:7;4922:23;4918:32;4915:52;;;4963:1;4960;4953:12;4915:52;4995:9;4989:16;5048:5;5041:13;5034:21;5027:5;5024:32;5014:60;;5070:1;5067;5060:12;6118:407;6320:2;6302:21;;;6359:2;6339:18;;;6332:30;6398:34;6393:2;6378:18;;6371:62;-1:-1:-1;;;6464:2:122;6449:18;;6442:41;6515:3;6500:19;;6118:407::o",
+        "linkReferences": {}
+    },
+    "methodIdentifiers": {
+        "EMPTY_PAYLOAD_HASH()": "cb5026b9",
+        "NIL_PAYLOAD_HASH()": "2baf0be7",
+        "endpoint()": "5e280f11",
+        "executable((uint32,bytes32,uint64),address)": "4b4b2efb",
+        "initializable((uint32,bytes32,uint64),address)": "861e1ca5",
+        "initialize(address)": "c4d66de8",
+        "verifiable((uint32,bytes32,uint64),address,address,bytes32)": "e1e3a7df"
+    },
+    "rawMetadata": "{\"compiler\":{\"version\":\"0.8.24+commit.e11b9ed9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"version\",\"type\":\"uint8\"}],\"name\":\"Initialized\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"EMPTY_PAYLOAD_HASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"NIL_PAYLOAD_HASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"endpoint\",\"outputs\":[{\"internalType\":\"contract ILayerZeroEndpointV2\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"uint32\",\"name\":\"srcEid\",\"type\":\"uint32\"},{\"internalType\":\"bytes32\",\"name\":\"sender\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"nonce\",\"type\":\"uint64\"}],\"internalType\":\"struct Origin\",\"name\":\"_origin\",\"type\":\"tuple\"},{\"internalType\":\"address\",\"name\":\"_receiver\",\"type\":\"address\"}],\"name\":\"executable\",\"outputs\":[{\"internalType\":\"enum ExecutionState\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"uint32\",\"name\":\"srcEid\",\"type\":\"uint32\"},{\"internalType\":\"bytes32\",\"name\":\"sender\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"nonce\",\"type\":\"uint64\"}],\"internalType\":\"struct Origin\",\"name\":\"_origin\",\"type\":\"tuple\"},{\"internalType\":\"address\",\"name\":\"_receiver\",\"type\":\"address\"}],\"name\":\"initializable\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_endpoint\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"uint32\",\"name\":\"srcEid\",\"type\":\"uint32\"},{\"internalType\":\"bytes32\",\"name\":\"sender\",\"type\":\"bytes32\"},{\"internalType\":\"uint64\",\"name\":\"nonce\",\"type\":\"uint64\"}],\"internalType\":\"struct Origin\",\"name\":\"_origin\",\"type\":\"tuple\"},{\"internalType\":\"address\",\"name\":\"_receiver\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_receiveLib\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"_payloadHash\",\"type\":\"bytes32\"}],\"name\":\"verifiable\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"events\":{\"Initialized(uint8)\":{\"details\":\"Triggered when the contract has been initialized or reinitialized.\"}},\"kind\":\"dev\",\"methods\":{\"executable((uint32,bytes32,uint64),address)\":{\"details\":\"check if a message is executable.\",\"returns\":{\"_0\":\"ExecutionState of Executed, Executable, or NotExecutable\"}},\"verifiable((uint32,bytes32,uint64),address,address,bytes32)\":{\"details\":\"check if a message is verifiable.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"lib/LayerZero-v2/protocol/contracts/EndpointV2View.sol\":\"EndpointV2View\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@layerzerolabs/lz-evm-messagelib-v2/=lib/LayerZero-v2/messagelib/\",\":@layerzerolabs/lz-evm-protocol-v2/=lib/LayerZero-v2/protocol/\",\":@layerzerolabs/lz-evm-v1-0.7/=node_modules/@layerzerolabs/lz-evm-v1-0.7/\",\":@layerzerolabs/messagelib/=lib/LayerZero-v2/messagelib/\",\":@layerzerolabs/oapp/=lib/LayerZero-v2/oapp/\",\":@layerzerolabs/protocol/=lib/LayerZero-v2/protocol/\",\":@openzeppelin/contracts-upgradeable/=node_modules/@openzeppelin/contracts-upgradeable/\",\":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/\",\":LayerZero-v2/=lib/LayerZero-v2/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\",\":hardhat-deploy/=node_modules/hardhat-deploy/\",\":solidity-bytes-utils/=node_modules/solidity-bytes-utils/\",\":solmate/=lib/solmate/src/\"]},\"sources\":{\"lib/LayerZero-v2/protocol/contracts/EndpointV2View.sol\":{\"keccak256\":\"0x8ce2aa4314153a9d631a55cf9dc49d03e44eacbf244ac8f96563793149df91dc\",\"license\":\"LZBL-1.2\",\"urls\":[\"bzz-raw://7392d7690aedbe05134f0772edc7f93273ed6c28dc9de1c27aedc13f92a496a8\",\"dweb:/ipfs/QmTqEGN7U8BfWg3bEuE9KSTcRLdpx7DAErKymtV48SBXBF\"]},\"lib/LayerZero-v2/protocol/contracts/EndpointV2ViewUpgradeable.sol\":{\"keccak256\":\"0x64f001f41bb10a5defd0bce7b643ebebaaaee2f58e4b0572b291c694737eff16\",\"license\":\"LZBL-1.2\",\"urls\":[\"bzz-raw://ddfc7631591ae391a9dc3fcd66f02e58b0aac2c9afef5dd59326fe6e58fa859c\",\"dweb:/ipfs/QmVpaw5xdkQs1uiU2fSJH2kjVftsGB4du2yAqFekbkZvGB\"]},\"lib/LayerZero-v2/protocol/contracts/interfaces/ILayerZeroEndpointV2.sol\":{\"keccak256\":\"0xf7f941bee89ea6369950fe54e8ac476ae6478b958b20fc0e8a83e8ff1364eac3\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://bacc29fd3866af71e59cb0bdc1cf82c882a4a7f4e2652fd413c9f12649762083\",\"dweb:/ipfs/QmZh2toLnrQDWaNYhS5K4NoW7Vxd2GdZx9KA77vKEDLAqs\"]},\"lib/LayerZero-v2/protocol/contracts/interfaces/IMessageLibManager.sol\":{\"keccak256\":\"0xd710f9efe703982e8eabe15d19d6114af753ef42f2796551da782a0fb6633e4b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b5c9c874871469c871004d49a1cb5304e63ea3faaf366bfed9d718abbb9cc20a\",\"dweb:/ipfs/QmarXxE4dezAa5gBe82KCrcvWcMwa3BYqkfXbDQ3rRjfEB\"]},\"lib/LayerZero-v2/protocol/contracts/interfaces/IMessagingChannel.sol\":{\"keccak256\":\"0x0878f64dffebf58c4165569416372f40860fab546b88cd926eba0d5cb6d8d972\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7e1b245d58221d16d8b5e0f01ef3e289a24a7df1ace3b94239e4d5b954ad5927\",\"dweb:/ipfs/Qmappsgp7PCY9rSSNE9Cdn4BTRX591WfCSEgq2HxhA3z6S\"]},\"lib/LayerZero-v2/protocol/contracts/interfaces/IMessagingComposer.sol\":{\"keccak256\":\"0x85bc7090134529ec474866dc4bb1c48692d518c756eb0a961c82574829c51901\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b18b23a1643fc6636c4ad9d9023e2e6ca2d3c2a4a046482d4655bff09950598d\",\"dweb:/ipfs/Qma6G5SqiovwrMPfgqTrRngK1HWW373Wkf9c6YP2NhXpPk\"]},\"lib/LayerZero-v2/protocol/contracts/interfaces/IMessagingContext.sol\":{\"keccak256\":\"0xff0c546c2813dae3e440882f46b377375f7461b0714efd80bd3f0c6e5cb8da4e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5173fc9143bea314b159ca5a9adb5626659ef763bc598e27de5fa46efe3291a6\",\"dweb:/ipfs/QmSLFeMFPmVeGxT4sxRPW28ictjAS22M8rLeYRu9TXkA6D\"]},\"node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol\":{\"keccak256\":\"0x89be10e757d242e9b18d5a32c9fbe2019f6d63052bbe46397a430a1d60d7f794\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f103ee2e4aecd37aac6ceefe670709cdd7613dee25fa2d4d9feaf7fc0aaa155e\",\"dweb:/ipfs/QmRiNZLoJk5k3HPMYGPGjZFd2ke1ZxjhJZkM45Ec9GH9hv\"]},\"node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol\":{\"keccak256\":\"0x9c80f545915582e63fe206c6ce27cbe85a86fc10b9cd2a0e8c9488fb7c2ee422\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://310136ad60820af4177a11a61d77a3686faf5fca4942b600e08fc940db38396b\",\"dweb:/ipfs/QmbCzMNSTL7Zi7M4UCSqBrkHtp4jjxUnGbkneCZKdR1qeq\"]},\"node_modules/hardhat-deploy/solc_0.8/proxy/Proxied.sol\":{\"keccak256\":\"0xaaceeafeeaf0d200ca3942d8bf14c1c4f787a77f79cc87c08bb668e65acdee29\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://629a47b598308d280f145a2019e1b5fff9ed224f77ca8ae075982cf765bbfd63\",\"dweb:/ipfs/QmNmAqhHChpdtoGNtFCz7ekMTWht6AR3p94Hx9gyptcJgT\"]}},\"version\":1}",
+    "metadata": {
+        "compiler": {
+            "version": "0.8.24+commit.e11b9ed9"
+        },
+        "language": "Solidity",
+        "output": {
+            "abi": [
+                {
+                    "inputs": [
+                        {
+                            "internalType": "uint8",
+                            "name": "version",
+                            "type": "uint8",
+                            "indexed": false
+                        }
+                    ],
+                    "type": "event",
+                    "name": "Initialized",
+                    "anonymous": false
+                },
+                {
+                    "inputs": [],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "EMPTY_PAYLOAD_HASH",
+                    "outputs": [
+                        {
+                            "internalType": "bytes32",
+                            "name": "",
+                            "type": "bytes32"
+                        }
+                    ]
+                },
+                {
+                    "inputs": [],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "NIL_PAYLOAD_HASH",
+                    "outputs": [
+                        {
+                            "internalType": "bytes32",
+                            "name": "",
+                            "type": "bytes32"
+                        }
+                    ]
+                },
+                {
+                    "inputs": [],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "endpoint",
+                    "outputs": [
+                        {
+                            "internalType": "contract ILayerZeroEndpointV2",
+                            "name": "",
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "struct Origin",
+                            "name": "_origin",
+                            "type": "tuple",
+                            "components": [
+                                {
+                                    "internalType": "uint32",
+                                    "name": "srcEid",
+                                    "type": "uint32"
+                                },
+                                {
+                                    "internalType": "bytes32",
+                                    "name": "sender",
+                                    "type": "bytes32"
+                                },
+                                {
+                                    "internalType": "uint64",
+                                    "name": "nonce",
+                                    "type": "uint64"
+                                }
+                            ]
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "_receiver",
+                            "type": "address"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "executable",
+                    "outputs": [
+                        {
+                            "internalType": "enum ExecutionState",
+                            "name": "",
+                            "type": "uint8"
+                        }
+                    ]
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "struct Origin",
+                            "name": "_origin",
+                            "type": "tuple",
+                            "components": [
+                                {
+                                    "internalType": "uint32",
+                                    "name": "srcEid",
+                                    "type": "uint32"
+                                },
+                                {
+                                    "internalType": "bytes32",
+                                    "name": "sender",
+                                    "type": "bytes32"
+                                },
+                                {
+                                    "internalType": "uint64",
+                                    "name": "nonce",
+                                    "type": "uint64"
+                                }
+                            ]
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "_receiver",
+                            "type": "address"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "initializable",
+                    "outputs": [
+                        {
+                            "internalType": "bool",
+                            "name": "",
+                            "type": "bool"
+                        }
+                    ]
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "_endpoint",
+                            "type": "address"
+                        }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "initialize"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "struct Origin",
+                            "name": "_origin",
+                            "type": "tuple",
+                            "components": [
+                                {
+                                    "internalType": "uint32",
+                                    "name": "srcEid",
+                                    "type": "uint32"
+                                },
+                                {
+                                    "internalType": "bytes32",
+                                    "name": "sender",
+                                    "type": "bytes32"
+                                },
+                                {
+                                    "internalType": "uint64",
+                                    "name": "nonce",
+                                    "type": "uint64"
+                                }
+                            ]
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "_receiver",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "_receiveLib",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "bytes32",
+                            "name": "_payloadHash",
+                            "type": "bytes32"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "verifiable",
+                    "outputs": [
+                        {
+                            "internalType": "bool",
+                            "name": "",
+                            "type": "bool"
+                        }
+                    ]
+                }
+            ],
+            "devdoc": {
+                "kind": "dev",
+                "methods": {
+                    "executable((uint32,bytes32,uint64),address)": {
+                        "details": "check if a message is executable.",
+                        "returns": {
+                            "_0": "ExecutionState of Executed, Executable, or NotExecutable"
+                        }
+                    },
+                    "verifiable((uint32,bytes32,uint64),address,address,bytes32)": {
+                        "details": "check if a message is verifiable."
+                    }
+                },
+                "version": 1
+            },
+            "userdoc": {
+                "kind": "user",
+                "methods": {},
+                "version": 1
+            }
+        },
+        "settings": {
+            "remappings": [
+                "@layerzerolabs/lz-evm-messagelib-v2/=lib/LayerZero-v2/messagelib/",
+                "@layerzerolabs/lz-evm-protocol-v2/=lib/LayerZero-v2/protocol/",
+                "@layerzerolabs/lz-evm-v1-0.7/=node_modules/@layerzerolabs/lz-evm-v1-0.7/",
+                "@layerzerolabs/messagelib/=lib/LayerZero-v2/messagelib/",
+                "@layerzerolabs/oapp/=lib/LayerZero-v2/oapp/",
+                "@layerzerolabs/protocol/=lib/LayerZero-v2/protocol/",
+                "@openzeppelin/contracts-upgradeable/=node_modules/@openzeppelin/contracts-upgradeable/",
+                "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+                "LayerZero-v2/=lib/LayerZero-v2/",
+                "ds-test/=lib/forge-std/lib/ds-test/src/",
+                "forge-std/=lib/forge-std/src/",
+                "hardhat-deploy/=node_modules/hardhat-deploy/",
+                "solidity-bytes-utils/=node_modules/solidity-bytes-utils/",
+                "solmate/=lib/solmate/src/"
+            ],
+            "optimizer": {
+                "enabled": true,
+                "runs": 200
+            },
+            "metadata": {
+                "bytecodeHash": "ipfs"
+            },
+            "compilationTarget": {
+                "lib/LayerZero-v2/protocol/contracts/EndpointV2View.sol": "EndpointV2View"
+            },
+            "evmVersion": "paris",
+            "libraries": {}
+        },
+        "sources": {
+            "lib/LayerZero-v2/protocol/contracts/EndpointV2View.sol": {
+                "keccak256": "0x8ce2aa4314153a9d631a55cf9dc49d03e44eacbf244ac8f96563793149df91dc",
+                "urls": [
+                    "bzz-raw://7392d7690aedbe05134f0772edc7f93273ed6c28dc9de1c27aedc13f92a496a8",
+                    "dweb:/ipfs/QmTqEGN7U8BfWg3bEuE9KSTcRLdpx7DAErKymtV48SBXBF"
+                ],
+                "license": "LZBL-1.2"
+            },
+            "lib/LayerZero-v2/protocol/contracts/EndpointV2ViewUpgradeable.sol": {
+                "keccak256": "0x64f001f41bb10a5defd0bce7b643ebebaaaee2f58e4b0572b291c694737eff16",
+                "urls": [
+                    "bzz-raw://ddfc7631591ae391a9dc3fcd66f02e58b0aac2c9afef5dd59326fe6e58fa859c",
+                    "dweb:/ipfs/QmVpaw5xdkQs1uiU2fSJH2kjVftsGB4du2yAqFekbkZvGB"
+                ],
+                "license": "LZBL-1.2"
+            },
+            "lib/LayerZero-v2/protocol/contracts/interfaces/ILayerZeroEndpointV2.sol": {
+                "keccak256": "0xf7f941bee89ea6369950fe54e8ac476ae6478b958b20fc0e8a83e8ff1364eac3",
+                "urls": [
+                    "bzz-raw://bacc29fd3866af71e59cb0bdc1cf82c882a4a7f4e2652fd413c9f12649762083",
+                    "dweb:/ipfs/QmZh2toLnrQDWaNYhS5K4NoW7Vxd2GdZx9KA77vKEDLAqs"
+                ],
+                "license": "MIT"
+            },
+            "lib/LayerZero-v2/protocol/contracts/interfaces/IMessageLibManager.sol": {
+                "keccak256": "0xd710f9efe703982e8eabe15d19d6114af753ef42f2796551da782a0fb6633e4b",
+                "urls": [
+                    "bzz-raw://b5c9c874871469c871004d49a1cb5304e63ea3faaf366bfed9d718abbb9cc20a",
+                    "dweb:/ipfs/QmarXxE4dezAa5gBe82KCrcvWcMwa3BYqkfXbDQ3rRjfEB"
+                ],
+                "license": "MIT"
+            },
+            "lib/LayerZero-v2/protocol/contracts/interfaces/IMessagingChannel.sol": {
+                "keccak256": "0x0878f64dffebf58c4165569416372f40860fab546b88cd926eba0d5cb6d8d972",
+                "urls": [
+                    "bzz-raw://7e1b245d58221d16d8b5e0f01ef3e289a24a7df1ace3b94239e4d5b954ad5927",
+                    "dweb:/ipfs/Qmappsgp7PCY9rSSNE9Cdn4BTRX591WfCSEgq2HxhA3z6S"
+                ],
+                "license": "MIT"
+            },
+            "lib/LayerZero-v2/protocol/contracts/interfaces/IMessagingComposer.sol": {
+                "keccak256": "0x85bc7090134529ec474866dc4bb1c48692d518c756eb0a961c82574829c51901",
+                "urls": [
+                    "bzz-raw://b18b23a1643fc6636c4ad9d9023e2e6ca2d3c2a4a046482d4655bff09950598d",
+                    "dweb:/ipfs/Qma6G5SqiovwrMPfgqTrRngK1HWW373Wkf9c6YP2NhXpPk"
+                ],
+                "license": "MIT"
+            },
+            "lib/LayerZero-v2/protocol/contracts/interfaces/IMessagingContext.sol": {
+                "keccak256": "0xff0c546c2813dae3e440882f46b377375f7461b0714efd80bd3f0c6e5cb8da4e",
+                "urls": [
+                    "bzz-raw://5173fc9143bea314b159ca5a9adb5626659ef763bc598e27de5fa46efe3291a6",
+                    "dweb:/ipfs/QmSLFeMFPmVeGxT4sxRPW28ictjAS22M8rLeYRu9TXkA6D"
+                ],
+                "license": "MIT"
+            },
+            "node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol": {
+                "keccak256": "0x89be10e757d242e9b18d5a32c9fbe2019f6d63052bbe46397a430a1d60d7f794",
+                "urls": [
+                    "bzz-raw://f103ee2e4aecd37aac6ceefe670709cdd7613dee25fa2d4d9feaf7fc0aaa155e",
+                    "dweb:/ipfs/QmRiNZLoJk5k3HPMYGPGjZFd2ke1ZxjhJZkM45Ec9GH9hv"
+                ],
+                "license": "MIT"
+            },
+            "node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol": {
+                "keccak256": "0x9c80f545915582e63fe206c6ce27cbe85a86fc10b9cd2a0e8c9488fb7c2ee422",
+                "urls": [
+                    "bzz-raw://310136ad60820af4177a11a61d77a3686faf5fca4942b600e08fc940db38396b",
+                    "dweb:/ipfs/QmbCzMNSTL7Zi7M4UCSqBrkHtp4jjxUnGbkneCZKdR1qeq"
+                ],
+                "license": "MIT"
+            },
+            "node_modules/hardhat-deploy/solc_0.8/proxy/Proxied.sol": {
+                "keccak256": "0xaaceeafeeaf0d200ca3942d8bf14c1c4f787a77f79cc87c08bb668e65acdee29",
+                "urls": [
+                    "bzz-raw://629a47b598308d280f145a2019e1b5fff9ed224f77ca8ae075982cf765bbfd63",
+                    "dweb:/ipfs/QmNmAqhHChpdtoGNtFCz7ekMTWht6AR3p94Hx9gyptcJgT"
+                ],
+                "license": "MIT"
+            }
+        },
+        "version": 1
+    },
+    "id": 44
+}
