@@ -192,10 +192,10 @@ const onPacketSent = async (
     const ulnConfig: UlnConfig = await receiverMsgLibDst.getUlnConfig(senderAddress, srcEid)
     log.debug(`Uln config: ${JSON.stringify(convertUlnConfig(ulnConfig))}`)
 
-    const status0: ExecutionState = await endpointV2ViewDst.executable(origin, receiverAddress)
-    log.debug(`\nStatus before DVN verify?\n  ${status0}`)
+    const executionStatus0: ExecutionState = await endpointV2ViewDst.executable(origin, receiverAddress)
+    log.debug(`\nStatus before DVN verify?\n  ${executionStatus0}`)
 
-    if (status0 === ExecutionState.NotExecutable) {
+    if (executionStatus0 === ExecutionState.NotExecutable) {
         console.log('=====================================================')
         console.log('🚚 Status: Inflight')
         console.log('=====================================================')
@@ -209,29 +209,40 @@ const onPacketSent = async (
             })
         const receipt1 = await tx1.wait()
         console.log(
-            `\n🔍 DVN verifies\n   - Transaction Hash: ${tx1.hash}\n   - Block Number: #${receipt1.blockNumber}`
+            `\n🔍 DVN Verification\n   - Transaction Hash: ${tx1.hash}\n   - Block Number: #${receipt1.blockNumber}`
         )
 
-        const status1: ExecutionState = await endpointV2ViewDst.executable(origin, receiverAddress)
-        log.debug(`\nStatus after DVN verify?\n  ${status1}`)
+        const executionStatus1: ExecutionState = await endpointV2ViewDst.executable(origin, receiverAddress)
+        log.debug(`\nStatus after DVN verify?\n  ${executionStatus1}`)
 
-        console.log('=====================================================')
-        console.log(`🔄 Status: Confirming`)
-        console.log('=====================================================')
-
-        // commit verification
-        const tx2 = await receiverMsgLibDst
-            .connect(signerDst)
-            .commitVerification(packetHeader, payloadHash, { gasLimit: 200000 })
-        const receipt2 = await tx2.wait()
-        console.log(
-            `\n✔️ Commit Verification\n   - Transaction Hash: ${tx2.hash}\n   - Block Number: #${receipt2.blockNumber}`
+        // Idempotent check if verifiable
+        const isVerifiable: boolean = await receiverMsgLibDst.verifiable(
+            ulnConfig,
+            ethers.utils.keccak256(packetHeader),
+            payloadHash
         )
+
+        if (isVerifiable) {
+            console.log('=====================================================')
+            console.log(`🔄 Status: Confirming`)
+            console.log('=====================================================')
+
+            // commit verification
+            const tx2 = await receiverMsgLibDst
+                .connect(signerDst)
+                .commitVerification(packetHeader, payloadHash, { gasLimit: 200000 })
+            const receipt2 = await tx2.wait()
+            console.log(
+                `\n✔️ Commit Verification\n   - Transaction Hash: ${tx2.hash}\n   - Block Number: #${receipt2.blockNumber}`
+            )
+        } else {
+            console.error(`❌ Packet is not verifiable`)
+        }
     }
 
-    const status2: ExecutionState = await endpointV2ViewDst.executable(origin, receiverAddress)
-    log.debug(`\nStatus after commit verification?\n  ${status2}`)
-    if (status2 === ExecutionState.Executable) {
+    const executionStatus2: ExecutionState = await endpointV2ViewDst.executable(origin, receiverAddress)
+    log.debug(`\nStatus after commit verification?\n  ${executionStatus2}`)
+    if (executionStatus2 === ExecutionState.Executable) {
         /* Executor's job */
         // NOTE: After the PacketSent event, the ExecutorFeePaid is how you know your Executor has been assigned to verify the packet's payloadHash.
         // Execute i.e. call `lzReceive` fn
@@ -244,14 +255,14 @@ const onPacketSent = async (
             { gasLimit: 200000 } // actual consumption is somewhere around 40k gas
         )
         const receipt3 = await tx3.wait()
-        console.log(`\n📬 lzReceive\n   - Transaction Hash: ${tx3.hash}\n   - Block Number: #${receipt3.blockNumber}`)
+        console.log(`\n📬 Execution\n   - Transaction Hash: ${tx3.hash}\n   - Block Number: #${receipt3.blockNumber}`)
 
         console.log('=====================================================')
         console.log('✅ Status: Delivered')
         console.log('=====================================================')
         console.log('🎉 Token transfer complete!')
     } else {
-        console.error(`🚫 Packet is not executable as it's ${getExecutionStateName(status2)}.`)
+        console.error(`🚫 Packet is not executable as it's ${getExecutionStateName(executionStatus2)}.`)
     }
 }
 
