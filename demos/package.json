@@ -1,34 +1,41 @@
 {
-  "name": "lz-token-ts-demo",
-  "version": "1.0.0",
-  "description": "Boilerplate for TS binary projects",
+  "name": "subspace-lz-demos",
+  "version": "0.0.1",
+  "description": "All demos of Subspace network related to LZ",
   "keywords": [],
   "license": "MIT",
   "author": "",
   "main": "index.js",
   "scripts": {
+    "auto-bridge:dvn": "tsc && node dist/demos/src/auto-bridge/dvn.js",
+    "auto-bridge:demo": "tsc && node dist/demos/src/auto-bridge/index.js",
     "build": "tsc",
     "clean": "rm -rf dist",
     "clean:all": "rm -rf dist && rm -rf node_modules",
     "doc": "typedoc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint . --ext .ts",
-    "start": "tsc && node dist/index.js"
+    "lz-token": "tsc && node dist/demos/src/lz-token/index.js"
   },
   "dependencies": {
     "@layerzerolabs/lz-v2-utilities": "^2.1.24",
-    "dotenv": "^16.4.5",
+    "dotenv-expand": "^11.0.6",
     "ethers": "^5.7.2"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.10",
+    "@types/bun": "latest",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
+    "chai": "^5.1.0",
     "eslint": "^8.55.0",
-    "jest": "^29.7.0",
+    "loglevel": "^1.9.1",
     "prettier": "^3.1.0",
-    "ts-jest": "^29.1.1",
-    "typedoc": "^0.25.4",
+    "typedoc": "^0.25.4"
+  },
+  "peerDependencies": {
     "typescript": "^5.3.2"
+  },
+  "engines": {
+    "node": "18.18.0"
   }
 }

@@ -1,24 +1,13 @@
 import { Contract, ethers, BigNumber, ContractFactory, BigNumberish } from 'ethers'
-import { SendParamStruct, MessagingFeeStruct } from './typechain/contracts/MyToken'
+import { SendParamStruct, MessagingFeeStruct } from '../../build/typechain/contracts/MyToken'
 import { Options } from '@layerzerolabs/lz-v2-utilities'
 import { hexZeroPad } from 'ethers/lib/utils'
+import { ZERO_ADDRESS } from './utils'
+import { BridgeConfig } from './types'
 
 /* Constants */
 // TODO: define max. chains
 // const N: number = 2;
-export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
-
-// params loaded from some file(s) like `.env`
-export interface BridgeConfig {
-    networkNames: string[]
-    chainRpcUrls: string[]
-    endpointIds: string[]
-    endpointAddresses: string[]
-    tokenAddresses: string[]
-    privateKey: string
-    abi: any
-    bytecode: string
-}
 
 export class TokenBridge {
     private providers: ethers.providers.JsonRpcProvider[]
@@ -102,9 +91,13 @@ export class TokenBridge {
 
         if (!(await TokenBridge.isPeerSet(tokenContract, othersEndpointId, othersPeerAddress))) {
             console.log(`Incorrect/No peer was set on ${networkName}.`)
-            const tx = await tokenContract.connect(owner).setPeer(othersEndpointId, paddedPeerAddress)
-            await tx.wait()
-            console.log(`\tSo, correct peer set on ${networkName} via tx hash: ${tx.hash}`)
+            const tx = await tokenContract
+                .connect(owner)
+                .setPeer(othersEndpointId, paddedPeerAddress, { gasLimit: 1000000 })
+            const receipt = await tx.wait()
+            console.log(
+                `\tSo, correct peer set on ${networkName} via tx hash: ${tx.hash} in block #${receipt.blockNumber}`
+            )
         }
     }
 
@@ -128,30 +121,31 @@ export class TokenBridge {
 
     /// Get balances of an address on both the chains
     public async getBalancesOf(whoAddress: string): Promise<BigNumber[]> {
-        const balances = []
-        for (let i = 0; i < 2; ++i) {
-            const balOwner = await this.tokens[i].balanceOf(whoAddress)
+        const balancePromises = this.tokens.map((token) => token.balanceOf(whoAddress))
+        const balances = await Promise.all(balancePromises)
+
+        // Assuming you want to keep the logs for debugging, you could map over the results to log them
+        balances.forEach((bal, i) => {
             console.log(
-                `Address \'${whoAddress.slice(0, 6)}...${whoAddress.slice(-4)}\' with token-[${i}] has balance: ${ethers.utils.formatEther(balOwner)}`
+                `Address '${whoAddress.slice(0, 6)}...${whoAddress.slice(-4)}' with 🪙 Token-[${i}] balance: ${ethers.utils.formatEther(bal)} wTSSC`
             )
-            balances.push(balOwner)
-        }
+        })
 
         return balances
     }
 
     /// Get the total supply of tokens on both the chains
     public async getTotalSuppliesOf(): Promise<BigNumber[]> {
-        const totalSupplies = []
-        for (let i = 0; i < 2; ++i) {
-            const totSupply = await this.tokens[i].totalSupply()
-            console.log(`token[${i}]'s total supply: ${ethers.utils.formatEther(totSupply)}`)
-            totalSupplies.push(totSupply)
-        }
+        const totalSupplyPromises = this.tokens.map((token) => token.totalSupply())
+        const supplies = await Promise.all(totalSupplyPromises)
 
-        return totalSupplies
+        // If keeping the logs, otherwise remove this block
+        supplies.forEach((supply, index) => {
+            console.log(`🪙 Token[${index}] - Total Supply: ${ethers.utils.formatEther(supply)} wTSSC`)
+        })
+
+        return supplies
     }
-
     /// set enforced params for any contract corresponding to message type like
     ///     SEND, SEND_CALL, etc. which allows to make different message patterns.
     public async setEnforcedParams(token: Contract, otherEndpointId: string) {
@@ -175,7 +169,7 @@ export class TokenBridge {
         // Wait for the transaction to be mined
         await tx.wait()
 
-        console.log('Enforced options set successfully via tx hash: ', tx.hash)
+        console.log(`Enforced options set successfully via tx hash: ${tx.hash}`)
     }
 
     /// send tokens from token A to B on 2 different chains
@@ -187,7 +181,9 @@ export class TokenBridge {
         recipientAddress: string
     ): Promise<void> {
         // TODO: add gas limit as param by fetching from the network on real-time
-        const options = Options.newOptions().addExecutorLzReceiveOption(200000, 0).toHex().toString()
+        // 200000 gas limit is for OFT (taken from docs)
+        // 8000000 gas limit set for WTsscLz
+        const options = Options.newOptions().addExecutorLzReceiveOption(8000000, 0).toHex().toString()
         const sendParams: SendParamStruct = {
             dstEid,
             to: ethers.utils.hexZeroPad(recipientAddress, 32),
@@ -199,16 +195,22 @@ export class TokenBridge {
         }
 
         // get quote before send
+        // TODO: Add non-zero fee
         const messagingFee: MessagingFeeStruct = await srcToken.quoteSend(sendParams, false)
-        // console.log('quote: \n nativeFee: ', messagingFee.nativeFee, '\n lzFee: ', messagingFee.lzTokenFee)
+        // console.log(
+        //     'quote: \n nativeFee: ',
+        //     messagingFee.nativeFee.toString(),
+        //     '\n lzFee: ',
+        //     messagingFee.lzTokenFee.toString()
+        // )
 
         // send
         const sendTx = await srcToken
             .connect(srcSigner)
-            .send(sendParams, messagingFee, srcSigner.address, { value: messagingFee.nativeFee })
-        await sendTx.wait()
+            .send(sendParams, messagingFee, srcSigner.address, { value: messagingFee.nativeFee, gasLimit: 8000000 })
+        const receipt = await sendTx.wait()
         console.log(
-            `Tx hash for sending tokens from contract \'${srcToken.address.slice(0, 6)}...${srcToken.address.slice(-4)}\': \n\t\'${sendTx.hash}\'`
+            `📤 Sending ${ethers.utils.formatEther(amount)} wTSSC\n   - Contract: '${srcToken.address.slice(0, 6)}...${srcToken.address.slice(-4)}'\n   - Transaction Hash: ${sendTx.hash}\n   - Block Number: #${receipt.blockNumber}`
         )
     }
 }

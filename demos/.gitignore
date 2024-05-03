@@ -3,3 +3,5 @@ dist/
 *.js
 yarn-error.log
 !typechain/
+.DS_Store
+.env
