@@ -56,14 +56,29 @@ bun auto-bridge:demo init
 # view balances
 bun auto-bridge:demo view
 
-# deposit TSSC & send wTSSC
-bun auto-bridge:demo send
+# Send tokens from Nova to Sepolia
+bun auto-bridge:demo send01
+
+# Send tokens from Sepolia to Nova
+bun auto-bridge:demo send01
 ```
 
 2. To host offchain layer (handling DVN, Executor roles), run in terminal-2:
 
 ```sh
+# production mode
 bun auto-bridge:dvn
+
+# trace mode
+bun auto-bridge:dvn trace
+
+# debug mode
+bun auto-bridge:dvn debug
+
+# info mode
+bun auto-bridge:dvn info
 ```
+
+> The info mode additionally gives the `encoded packet` which is sometimes helpful as info to debug an issue.
 
 > This keeps running and listens to messages sent over src chain from terminal-1.
