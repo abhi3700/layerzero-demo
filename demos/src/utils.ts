@@ -40,3 +40,14 @@ export function setVerbosity(verbosity: string) {
         throw new Error(`Invalid verbosity: ${verbosity}`)
     }
 }
+
+// get network name from eid
+export function getNetworkNameFromEid(eid: number): string {
+    if (eid == 490000) {
+        return 'Nova'
+    } else if (eid == 40161) {
+        return 'Sepolia'
+    }
+
+    return ''
+}

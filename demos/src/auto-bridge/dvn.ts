@@ -45,6 +45,7 @@ import EndpointV2Json from '../../abi/EndpointV2.json'
 import EndpointV2ViewJson from '../../abi/EndpointV2View.json'
 import DVNJson from '../../abi/DVN.json'
 import log from 'loglevel'
+import { getNetworkNameFromEid } from '../utils'
 
 loadEnv()
 
@@ -128,8 +129,13 @@ function getPacketInfo(encodedPacketHex: string): PacketInfo {
     const encodedPacket: Uint8Array = ethers.utils.arrayify(encodedPacketHex)
     const decodedPacket: Packet = PacketSerializer.deserialize(encodedPacket)
     const { version, nonce, srcEid, sender, dstEid, receiver, guid, message, payload } = decodedPacket
+    console.log('=====================================================')
+    console.log(`📤 Packet Sent:`)
+    console.log(
+        `\t- From: ${getNetworkNameFromEid(srcEid)}\n\t- To: ${getNetworkNameFromEid(dstEid)}\n\t- Sender contract: ${ethers.utils.hexStripZeros(sender)}\n\t- Nonce: ${nonce}`
+    )
 
-    log.debug(`\tDecoded Packet: ${JSON.stringify(decodedPacket)}`)
+    log.debug(`\tDecoded Packet: ${JSON.stringify(decodedPacket, null, 2)}`)
     log.info(`\tEncoded Packet Hex: ${encodedPacketHex}`)
     const packetHeader = sliceBytes(encodedPacket, 0, 81)
     log.debug(`Header: ${ethers.utils.hexlify(packetHeader)}`)
@@ -162,20 +168,17 @@ const onPacketSent = async (
     providerDst: ethers.providers.Provider,
     event: ethers.Event
 ) => {
-    log.debug(`======PacketSent!======`)
     log.debug(`\tEncoded Packet Hex: ${encodedPacketHex}\n\tOptions: ${options}\n\tSend Library: ${sendLibrary}`)
 
     const { version, nonce, srcEid, sender, dstEid, receiver, guid, message, payload, packetHeader, payloadHash } =
         getPacketInfo(encodedPacketHex)
+    const senderAddress = ethers.utils.hexStripZeros(sender)
+    const receiverAddress = ethers.utils.hexStripZeros(receiver)
     const origin: MessageOrigin = {
         srcEid: srcEid,
         sender: sender,
         nonce: nonce,
     }
-    const senderAddress = ethers.utils.hexStripZeros(sender)
-    const receiverAddress = ethers.utils.hexStripZeros(receiver)
-
-    console.log(`\t- Nonce: ${nonce}\n\t- Sender contract: ${senderAddress}`)
 
     /* DVN's job */
     // The DVN first listens for the `PacketSent` event.
@@ -190,7 +193,7 @@ const onPacketSent = async (
     // is the required block confirmations to wait before calling verify on
     // the destination chain.
     const ulnConfig: UlnConfig = await receiverMsgLibDst.getUlnConfig(senderAddress, srcEid)
-    log.debug(`Uln config: ${JSON.stringify(convertUlnConfig(ulnConfig))}`)
+    log.debug(`Uln config: ${JSON.stringify(convertUlnConfig(ulnConfig), null, 2)}`)
 
     const executionStatus0: ExecutionState = await endpointV2ViewDst.executable(origin, receiverAddress)
     log.debug(`\nStatus before DVN verify?\n  ${executionStatus0}`)
@@ -259,8 +262,12 @@ const onPacketSent = async (
 
         console.log('=====================================================')
         console.log('✅ Status: Delivered')
+        console.log(
+            `\t- From: ${getNetworkNameFromEid(srcEid)}\n\t- To: ${getNetworkNameFromEid(dstEid)}\n\t- Sender contract: ${senderAddress}\n\t- Nonce: ${nonce}`
+        )
         console.log('=====================================================')
         console.log('🎉 Token transfer complete!')
+        console.log('=====================================================')
     } else {
         console.error(`🚫 Packet is not executable as it's ${getExecutionStateName(executionStatus2)}.`)
     }
@@ -272,8 +279,6 @@ const onPacketSentNova = async (
     sendLibrary: string,
     event: ethers.Event
 ) => {
-    console.log('=====================================================')
-    console.log(`📤 Packet Sent from Nova 🔗:`)
     await onPacketSent(
         encodedPacketHex,
         options,
@@ -292,8 +297,6 @@ const onPacketSentSepolia = async (
     sendLibrary: string,
     event: ethers.Event
 ) => {
-    console.log('=====================================================')
-    console.log(`📤 Packet Sent from Sepolia 🔗:`)
     await onPacketSent(
         encodedPacketHex,
         options,
@@ -334,13 +337,13 @@ const onOFTReceived = async (
 ) => {
     log.debug(`======OFT Received!======`)
     log.debug(
-        `\tGuid: ${guid}, \n\tNovaEid: ${srcEid}, \n\tTo: ${toAddress}, \n\tAmountReceivedLD: ${amountReceivedLD.toString()}`
+        `\tGuid: ${guid}, \n\tSrcEid: ${srcEid}, \n\tTo: ${toAddress}, \n\tAmountReceivedLD: ${amountReceivedLD.toString()}`
     )
 }
 
 const onPacketDelivered = async (origin: MessageOrigin, receiver: string, event: ethers.Event) => {
     log.debug(`======Packet Delivered!======`)
-    log.debug(`\tOrigin: ${origin}, \n\tReceiver: ${receiver}`)
+    log.debug(`\tOrigin: ${JSON.stringify(origin, null, 2)}, \n\tReceiver: ${receiver}`)
 }
 
 async function main(verbosity: string) {
